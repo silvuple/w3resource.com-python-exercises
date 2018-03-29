@@ -358,9 +358,6 @@ print(success_count)
 
 my_list = [1, 2, 3, 4, 5]
 my_dict = {}
-for i in range(len(my_list)-1):
-    my_dict[my_list[i]] = {}
-    my_dict[my_list[i]][my_list[i+1]] = {}
 
 """
 28. Write a Python program to sort a list alphabetically in a dictionary.
