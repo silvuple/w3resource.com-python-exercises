@@ -2,6 +2,8 @@
 1. Write a Python program to calculate the length of a string
 """
 
+import string
+from math import pi
 my_string = input("enter a string ")
 
 # solution 1:
@@ -138,7 +140,7 @@ elif my_string[-3:] == 'ing':
     new_string = my_string + 'ly'
 else:
     new_string = my_string + 'ing'
-print (new_string)
+print(new_string)
 
 """
 7. Write a Python program to find the first appearance of the substring
@@ -155,7 +157,8 @@ not_position = my_string.find('not')
 poor_position = my_string.find('poor')
 
 if not_position < poor_position and not_position != -1:
-    new_string = my_string[:not_position] + 'good' + my_string[poor_position+4:]
+    new_string = my_string[:not_position] + \
+        'good' + my_string[poor_position+4:]
 else:
     new_string = my_string
 
@@ -229,14 +232,14 @@ which have odd index values of a given string.
 my_string = input("enter a string ")
 
 # solution 1
-my_list = [my_string[x] for x in range(len(my_string)) if x%2 == 0]
+my_list = [my_string[x] for x in range(len(my_string)) if x % 2 == 0]
 new_string = ''.join(my_list)
 print(new_string)
 
 # solution 2
 new_string = ''
 for i in range(len(my_string)):
-    if i%2 == 0:
+    if i % 2 == 0:
         new_string += my_string[i]
 print(new_string)
 
@@ -275,7 +278,7 @@ for word in my_list:
     else:
         my_dict[word] = 1
 print(my_dict)
-    
+
 """
 13. Write a Python script that takes input from the user
 and displays that input back in upper and lower cases.
@@ -305,15 +308,21 @@ add_tags('b', 'Python Tutorial') -> '<b>Python Tutorial </b>'
 """
 
 # solution 1
+
+
 def add_tags(tag, text):
     return "<"+tag+">"+text+"<"+tag+">"
+
 
 print(add_tags('i', 'Python'))
 print(add_tags('b', 'Python Tutorial'))
 
 # solution 2
+
+
 def add_tags(tag, text):
     return "<%s>%s<%s>" % (tag, text, tag)
+
 
 print(add_tags('i', 'Python'))
 print(add_tags('b', 'Python Tutorial'))
@@ -325,10 +334,12 @@ insert_sting_middle('[[]]', 'Python') -> [[Python]]
 insert_sting_middle('{{}}', 'PHP') -> {{PHP}}
 """
 
+
 def insert_sting_middle(main_string, middle_string):
     main_len = len(main_string)
     middle = int(main_len/2)
     return main_string[:middle] + middle_string + main_string[middle:]
+
 
 print(insert_sting_middle('[[]]', 'Python'))
 print(insert_sting_middle('{{}}', 'PHP'))
@@ -342,8 +353,10 @@ insert_end('Python') -> onononon
 insert_end('Exercises') -> eseseses
 """
 
+
 def insert_end(my_string):
     return my_string[-2:] * 4
+
 
 print(insert_end('Python'))
 print(insert_end('Exercises'))
@@ -357,11 +370,14 @@ first_three('ipy') -> ipy
 first_three('python') -> pyt
 """
 
+
 def first_three(my_string):
     if len(my_string) > 2:
         return my_string[:3]
     else:
         return my_string
+
+
 print(first_three('ipy'))
 print(first_three('python'))
 
@@ -373,16 +389,22 @@ https://www.w3resource.com/python
 """
 
 # solution 1
+
+
 def get_last_part(my_string, char):
     position = my_string.rfind(char)
     return my_string[:position]
 
+
 print(get_last_part('https://www.w3resource.com/python', "/"))
 
 # solution 2
+
+
 def get_last_part(my_string, char):
     my_list = my_string.split(char)
     return char.join(my_list[:-1])
+
 
 print(get_last_part('https://www.w3resource.com/python', "/"))
 
@@ -391,23 +413,29 @@ print(get_last_part('https://www.w3resource.com/python', "/"))
 """
 
 # solution 1
+
+
 def reverse_string(my_string):
-    if len(my_string)%4 == 0:
+    if len(my_string) % 4 == 0:
         my_list = list(my_string)
         my_list.reverse()
         return ''.join(my_list)
     else:
         return my_string
 
+
 my_string = input("enter a string ")
 print(reverse_string(my_string))
 
 # solution 2
+
+
 def reverse_string(my_string):
-    if len(my_string)%4 == 0:
+    if len(my_string) % 4 == 0:
         return ''.join(reversed(my_string))
     else:
         return my_string
+
 
 my_string = input("enter a string ")
 print(reverse_string(my_string))
@@ -416,6 +444,7 @@ print(reverse_string(my_string))
 21. Write a Python function to convert a given string to all uppercase
 if it contains at least 2 uppercase characters in the first 4 characters.
 """
+
 
 def to_upper(my_string):
     counter = 0
@@ -426,6 +455,7 @@ def to_upper(my_string):
         return my_string.upper()
     else:
         return my_string
+
 
 my_string = input("enter a string ")
 print(to_upper(my_string))
@@ -441,16 +471,19 @@ print(''.join(sorted(my_string, key=str.lower)))
 24. Write a Python program to check whether a string starts with specified characters.
 """
 
+
 def starts_with(my_string, char):
     if my_string.startswith(char):
         return True
     else:
         return False
 
+
 my_string = input("enter a string ")
 my_char = input("enter a character ")
 
-print("does the string '%s' starts with the character '%s'?" % (my_string, my_char))
+print("does the string '%s' starts with the character '%s'?" %
+      (my_string, my_char))
 print(starts_with(my_string, my_char))
 
 """
@@ -463,6 +496,7 @@ fixed number of positions down the alphabet. For example, with a left shift of 3
 D would be replaced by A, E would become B, and so on. The method is named
 after Julius Caesar, who used it in his private correspondence.
 """
+
 
 def Caesar_encryption(my_string, my_shift, my_side):
     # for decription need to use negative shift(step) or same shift opposite side
@@ -490,6 +524,7 @@ def Caesar_encryption(my_string, my_shift, my_side):
                     letter_ord -= 26
                 new_string += chr(letter_ord+step)
     return new_string
+
 
 my_string = input("enter a string ")
 my_shift = int(input("enter shift number "))
@@ -591,7 +626,8 @@ print('{:^10}'.format(my_num))
 my_string = input("enter a string ")
 my_substring = input("enter a substring ")
 
-print("'%s' occures in '%s' %d times" % (my_substring, my_string, my_string.count(my_substring)))
+print("'%s' occures in '%s' %d times" %
+      (my_substring, my_string, my_string.count(my_substring)))
 
 """
 39. Write a Python program to reverse a string.
@@ -627,7 +663,7 @@ print(my_string.strip('wcom.'))
 
 # solution 2
 my_list = [x for x in my_string if x not in 'wcom.']
-##print(''.join(my_list))
+# print(''.join(my_list))
 
 """
 42. Write apython program to count repeated characters in a string. 
@@ -671,13 +707,14 @@ The area of the rectangle is 1256.66cm2
 The volume of the cylinder is 1254.725cm3
 """
 
-from math import pi
 
 def rectangle_area(length, width):
     return length*width
 
+
 def cylinder_volume(r, height):
     return pi*r*r*height
+
 
 # solution 1 using unicode superscript
 print('The area of the rectangle is %.2f cm\u00B2' % rectangle_area(5.5, 7))
@@ -698,13 +735,12 @@ Current character e position at 9
 my_string = 'w3resource'
 
 for i, v in enumerate(my_string):
-    print("Current character %s position at %d" % (v,i))
+    print("Current character %s position at %d" % (v, i))
 
 """
 45. Write a Python program to check if a string contains all letters
 of the alphabet.
 """
-import string
 my_string = input("enter a string ")
 
 # solution 1
@@ -727,7 +763,7 @@ if string.ascii_lowercase == string_letters:
     print('the string contains all the letters of the alphabet')
 else:
     print('the string DOES NOT contain all the letters of the alphabet')
-    
+
 """
 47. Write a Python program to lowercase first n characters in a string.
 """
@@ -748,7 +784,7 @@ print(my_string)
 my_list = my_string.split('.')
 new_list = []
 for i in my_list:
-    new_list.append(i.replace(',','.'))
+    new_list.append(i.replace(',', '.'))
 new_string = ','.join(new_list)
 print(new_string)
 
@@ -790,23 +826,23 @@ my_string = 'this is some text with space as a delimeter'
 print(my_string.rsplit(maxsplit=1))
 
 """
-Write a Python program to find the first non-repeating character in given string.
+51. Write a Python program to find the first non-repeating character in given string.
 """
 
 
 def first_non_repeating_character(str1):
-  char_order = []
-  ctr = {}
-  for c in str1:
-    if c in ctr:
-      ctr[c] += 1
-    else:
-      ctr[c] = 1
-      char_order.append(c)
-  for c in char_order:
-    if ctr[c] == 1:
-      return c
-  return None
+    char_order = []
+    ctr = {}
+    for c in str1:
+        if c in ctr:
+            ctr[c] += 1
+        else:
+            ctr[c] = 1
+            char_order.append(c)
+    for c in char_order:
+        if ctr[c] == 1:
+            return c
+    return None
 
 
 print(first_non_repeating_character('abcdef'))
