@@ -470,41 +470,163 @@ for j in range(n-1):
 print(int(a),end=" ")
 
 # 29. Find common divisors between two numbers in a given pair.
+def ngcd(x, y):
+    i=1
+    while(i<=x and i<=y):
+        if(x%i==0 and y%i == 0):
+            gcd=i;
+        i+=1
+    return gcd;
+def num_comm_div(x, y):
+  n = ngcd(x, y)
+  result = 0
+  z = int(n**0.5)
+  i = 1
+  while( i <= z ):
+    if(n % i == 0):
+      result += 2 
+      if(i == n/i):
+        result-=1
+    i+=1
+  return result
 
+print("Number of common divisors: ",num_comm_div(2, 4))
+print("Number of common divisors: ",num_comm_div(2, 8))
+print("Number of common divisors: ",num_comm_div(12, 24))
 
 # 30. reverse the digits of a given number and add it to the original, If the sum is not a palindrome repeat this procedure. 
   #Note: A palindrome is a word, number, or other sequence of characters which reads the same backward as forward, such as madam or racecar.
+  #P.S: Master solutio provided by Website is incorrect. I have offered a much cleaner and efficient solution. 
+def revadder(n):
+  number = str(n)
+  number = list(number)
+  number.sort(reverse=True)
+  return int(''.join(number)) + n
 
+print(revadder(45))
 
 # 31.  count the number of carry operations for each of a set of addition problems
-
+def carry_number(x, y):
+  ctr = 0
+  if(x == 0 and y == 0):
+    return 0
+  z = 0  
+  for i in reversed(range(10)):
+      z = x%10 + y%10 + z
+      if z > 9:
+        z = 1
+      else:
+        z = 0
+      ctr += z
+      x //= 10
+      y //= 10
+      
+  if ctr == 0:
+    return "No carry operation."
+  elif ctr == 1:
+    return ctr
+  else:
+    return ctr
+print(carry_number(786, 457))
+print(carry_number(5, 6))
 
 # 32. python program to find heights of the top three building in descending order from eight given buildings
-
+print("Input the heights of eight buildings:")
+l = [int(input()) for i in range(8)]
+print("Heights of the top three buildings:")
+l.sort(reverse=True)
+print(l[:3], end='\n')
 
 # 33.  compute the digit number of sum of two given integers
-
+print("Input two integers(a b): ")
+a,b = map(int,input().split(" "))
+print("Number of digit of a and b.:")
+print(len(str(a+b)))
 
 # 34. check whether three given lengths (integers) of three sides form a right triangle. Print "Yes" if the given sides form a right triangle otherwise print "No"
-
+print("Input three integers(sides of a triangle)")
+int_num = list(map(int,input().split()))
+x,y,z = sorted(int_num)
+if x**2+y**2==z**2:
+    print('Yes')
+else:
+    print('No')
 
 # 35. program which solve the equation: Go to the editor
   # ax+by=c
   # dx+ey=f
   # Print the values of x, y where a, b, c, d, e and f are given.
-
+print("Input the value of a, b, c, d, e, f:")
+a, b, c, d, e, f = map(float, input().split())
+n = a*e - b*d
+print("Values of x and y:")
+if n != 0:
+    x = (c*e - b*f) / n
+    y = (a*f - c*d) / n
+    print('{:.3f} {:.3f}'.format(x+0, y+0))
 
 # 36. compute the amount of the debt in n months. The borrowing amount is $100,000 and the loan adds 5% interest of the debt and rounds it to the nearest 1,000 above month by month.
-
+import math
+#Interest is fixed @5% PA
+x=int(input("Amount? "))
+period=int(input("Period? "))
+for i in range(period):
+  x=math.trunc(x*.05+x)
+  if x%1000==0:
+    x=x
+  else:
+    x=(1000-(x%1000))+x
+print("Amount of Debt: ", x)
 
 # 37. program which reads an integer n and find the number of combinations of a,b,c and d (0 <= a,b,c,d <= 9) where (a + b + c + d) will be equal to n.
-
+import itertools
+print("Input the number(n):")
+n=int(input())
+result=0
+for (i,j,k) in itertools.product(range(10),range(10),range(10)):
+    result+=(0<=n-(i+j+k)<=9)
+print("Number of combinations:",result)
 
 # 38. print the number of prime numbers which are less than or equal to a given integer.
+def is_prime(n):
+  for i in range(2, int(n//2)+1):
+    if n%i == 0:
+      return False
+    return True
 
+n = int(input('Input an integer: '))
+list_primes = []
+for j in range(2, n+1):
+  if is_prime(j):
+    list_primes.append(j)
+print("Number of prime numbers which are less than or equal to n.:",
+len(list_primes))
 
 # 39. compute the radius and the central coordinate (x, y) of a circle which is constructed by three given points on the plane surface.
-
+print("Input three coordinate of the circle:")
+x1, y1, x2, y2, x3, y3 = map(float, input().split())
+c = (x1-x2)**2 + (y1-y2)**2
+a = (x2-x3)**2 + (y2-y3)**2
+b = (x3-x1)**2 + (y3-y1)**2
+s = 2*(a*b + b*c + c*a) - (a*a + b*b + c*c) 
+px = (a*(b+c-a)*x1 + b*(c+a-b)*x2 + c*(a+b-c)*x3) / s
+py = (a*(b+c-a)*y1 + b*(c+a-b)*y2 + c*(a+b-c)*y3) / s 
+ar = a**0.5
+br = b**0.5
+cr = c**0.5 
+r = ar*br*cr / ((ar+br+cr)*(-ar+br+cr)*(ar-br+cr)*(ar+br-cr))**0.5
+print("Radius of the said circle:")
+print("{:>.3f}".format(r))
+print("Central coordinate (x, y) of the circle:")
+print("{:>.3f}".format(px),"{:>.3f}".format(py))
 
 # 40. check whether a point (x,y) is in a triangle or not. There is a triangle formed by three points
-
+print("Input x1,y1,x2,y2,x3,y3,xp,yp:")
+x1,y1,x2,y2,x3,y3,xp,yp = map(float, input().split())
+c1 = (x2-x1)*(yp-y1)-(y2-y1)*(xp-x1)
+c2 = (x3-x2)*(yp-y2)-(y3-y2)*(xp-x2)
+c3 = (x1-x3)*(yp-y3)-(y1-y3)*(xp-x3)
+if (c1<0 and c2<0 and c3<0) or (c1>0 and c2>0 and c3>0):
+    print("The point is in the triangle.")
+else:
+    print("The point is outside the triangle.")
