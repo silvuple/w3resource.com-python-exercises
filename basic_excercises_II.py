@@ -469,38 +469,42 @@ for j in range(n-1):
   a+=d
 print(int(a),end=" ")
 
-# 29.
+# 29. Find common divisors between two numbers in a given pair.
 
 
-# 30.
+# 30. reverse the digits of a given number and add it to the original, If the sum is not a palindrome repeat this procedure. 
+  #Note: A palindrome is a word, number, or other sequence of characters which reads the same backward as forward, such as madam or racecar.
 
 
-# 31.
+# 31.  count the number of carry operations for each of a set of addition problems
 
 
-# 32.
+# 32. python program to find heights of the top three building in descending order from eight given buildings
 
 
-# 33.
+# 33.  compute the digit number of sum of two given integers
 
 
-# 34.
+# 34. check whether three given lengths (integers) of three sides form a right triangle. Print "Yes" if the given sides form a right triangle otherwise print "No"
 
 
-# 35.
+# 35. program which solve the equation: Go to the editor
+  # ax+by=c
+  # dx+ey=f
+  # Print the values of x, y where a, b, c, d, e and f are given.
 
 
-# 36.
+# 36. compute the amount of the debt in n months. The borrowing amount is $100,000 and the loan adds 5% interest of the debt and rounds it to the nearest 1,000 above month by month.
 
 
-# 37.
+# 37. program which reads an integer n and find the number of combinations of a,b,c and d (0 <= a,b,c,d <= 9) where (a + b + c + d) will be equal to n.
 
 
-# 38.
+# 38. print the number of prime numbers which are less than or equal to a given integer.
 
 
-# 39.
+# 39. compute the radius and the central coordinate (x, y) of a circle which is constructed by three given points on the plane surface.
 
 
-# 40.
+# 40. check whether a point (x,y) is in a triangle or not. There is a triangle formed by three points
 
