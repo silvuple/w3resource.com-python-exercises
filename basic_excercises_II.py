@@ -400,7 +400,7 @@ if num > 0:
 def divisor(n):
     for i in range(n):
         x = len([i for i in range(1, n+1) if not n % i])
-    return x
+    return x 
 
 print(divisor(15))
 print(divisor(12))
@@ -417,4 +417,58 @@ def absent_digits(n):
     return n
 
 print(absent_digits([9, 8, 3, 2, 2, 0, 9, 7, 6, 3]))
+
+# 26. Compute the summation of the absolute difference of all distinct pairs in an given array
+def dist_sum(arr):
+    result=0
+    i=0
+    while i<len(arr):
+        result+=i*arr[i]-(len(arr)-i-1)*arr[i]
+        i+=1
+    return result
+# 3-1=2, 2-1=1, 3-2=1 so 2+1+1=4 which is absolute difference.     
+print(dist_sum([1,2,3]))
+# 5-1=4, 4-1=3, 5-4=1 so 4+3+1=8 which is absolute difference.
+print(dist_sum([1,4,5]))
+
+# 27.
+
+
+# 28.
+
+
+# 29.
+
+
+# 30.
+
+
+# 31.
+
+
+# 32.
+
+
+# 33.
+
+
+# 34.
+
+
+# 35.
+
+
+# 36.
+
+
+# 37.
+
+
+# 38.
+
+
+# 39.
+
+
+# 40.
 
