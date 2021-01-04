@@ -431,11 +431,43 @@ print(dist_sum([1,2,3]))
 # 5-1=4, 4-1=3, 5-4=1 so 4+3+1=8 which is absolute difference.
 print(dist_sum([1,4,5]))
 
-# 27.
+# 27.  Find the type of the progression and the next successive member of a given three successive members of a sequence
+       #For this solution we do not include HP, only AP and GP
+def ap_gp_sequence(arr):
+  if arr[0]==arr[1]==arr[2]==0:
+    return "Wrong Numbers"
+  else:
+    if arr[1]-arr[0]==arr[2]-arr[1]:
+      n=2*arr[2]-arr[1]
+      return "AP sequence, "+'Next number of the sequence: '+str(n)
+    else:
+      n=arr[2]**2/arr[1]
+      return "GP sequence, " + 'Next number of the sequence:  '+str(n)
+
+print(ap_gp_sequence([1,2,3]))
+print(ap_gp_sequence([2,6,18]))
+print(ap_gp_sequence([0,0,0]))
+
+# 28.  print the length of the series and the series from the given 3rd term, 3rd last term and the sum of a series.
+tn = int(input("Input third term of the series:"))
+tltn = int(input("Input 3rd last term:"))
+s_sum = int(input("Sum of the series:"))
+n = int(2*s_sum/(tn+tltn))
+print("Length of the series: ",n)
 
 
-# 28.
+if n-5==0:
+  d = (s_sum-3*tn)//6
+else:
+  d = (tltn-tn)/(n-5)
 
+a = tn-2*d
+j = 0
+print("Series:")
+for j in range(n-1):
+  print(int(a),end=" ")
+  a+=d
+print(int(a),end=" ")
 
 # 29.
 
