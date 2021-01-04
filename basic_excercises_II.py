@@ -630,3 +630,108 @@ if (c1<0 and c2<0 and c3<0) or (c1>0 and c2>0 and c3>0):
     print("The point is in the triangle.")
 else:
     print("The point is outside the triangle.")
+
+# 41. compute and print sum of two given integers (more than or equal to zero). If given integers or the sum have more than 80 digits, print "overflow"
+
+
+# 42. program that accepts six numbers as input and sorts them in descending order
+
+
+# 43.  test whether two lines PQ and RS are parallel. The four points are P(x1, y1), Q(x2, y2), R(x3, y3), S(x4, y4).
+
+
+# 44. find the maximum sum of a contiguous subsequence from a given sequence of numbers a1, a2, a3, ... an. A subsequence of one element is also a continuous subsequence. Go to the editor
+      # Input:
+      # You can assume that 1 <= n <= 5000 and -100000 <= ai <= 100000.
+      # Input numbers are separated by a space.
+      # Input 0 to exit.
+      # Input number of sequence of numbers you want to input (0 to exit):
+      # 3
+      # Input numbers:
+      # 2
+      # 4
+      # 6
+      # Maximum sum of the said contiguous subsequence: 12
+      # Input number of sequence of numbers you want to input (0 to exit):
+      # 0
+
+
+# 45. There are two circles C1 with radius r1, central coordinate (x1, y1) and C2 with radius r2 and central coordinate (x2, y2). 
+        # Write a Python program to test the followings -
+
+        #     "C2 is in C1" if C2 is in C1
+        #     "C1 is in C2" if C1 is in C2
+        #     "Circumference of C1 and C2 intersect" if circumference of C1 and C2 intersect, and
+        #     "C1 and C2 do not overlap" if C1 and C2 do not overlap.
+
+
+# 46. Write a Python program to that reads a date (from 2016/1/1 to 2016/12/31) and prints the day of the date. Jan. 1, 2016, is Friday. Note that 2016 is a leap year. Go to the editor
+      # Input:
+      # Two integers m and d separated by a single space in a line, m ,d represent the month and the day.
+      # Input month and date (separated by a single space):
+      # 5 15
+      # Name of the date: Sunday
+
+
+# 47. program which reads a text (only alphabetical characters and spaces.) and prints two words. The first one is the word which is arise most frequently in the text. The second one is the word which has the maximum number of letters.
+        # Input:
+        # A text is given in a line with following condition:
+        # a. The number of letters in the text is less than or equal to 1000.
+        # b. The number of letters in a word is less than or equal to 32.
+        # c. There is only one word which is arise most frequently in given text.
+        # d. There is only one word which has the maximum number of letters in given text.
+        # Input text: Thank you for your comment and your participation.
+        # Output: your participation.
+
+# 48. program that reads n digits (given) chosen from 0 to 9 and prints the number of combinations where the sum of the digits equals to another given number (s). Do not use the same digits in a combination
+      # Two integers as number of combinations and their sum by a single space in a line. Input 0 0 to exit.
+      # Input number of combinations and sum, input 0 0 to exit:
+      # 5 6
+      # 2 4
+      # 0 0
+      # 2
+
+
+# 49.  program which reads the two adjoined sides and the diagonal of a parallelogram and check whether the parallelogram is a rectangle or a rhombus.
+
+
+# 50. program to replace a string "Python" with "Java" and "Java" with "Python" in a given string.
+
+
+# 51.  find the difference between the largest integer and the smallest integer which are created by 8 numbers from 0 to 9. The number that can be rearranged shall start with 0 as in 00135668
+
+
+# 52. compute the sum of first n given prime numbers
+
+
+# 53. program that accept an even number (>=4, Goldbach number) from the user and create a combinations that express the given number as a sum of two prime numbers. Print the number of combinations
+
+
+# 54. if you draw a straight line on a plane, the plane is divided into two regions. For example, if you pull two straight lines in parallel, you get three areas, and if you draw vertically one to the other you get 4 areas.
+    # Write a Python program to create maximum number of regions obtained by drawing n given straight lines 
+
+
+# 55. There are four different points on a plane, P(xp,yp), Q(xq, yq), R(xr, yr) and S(xs, ys). Write a Python program to test AB and CD are orthogonal or not.
+
+
+# 56. sum of all numerical values (positive integers) embedded in a sentence.
+  # Write a Python program to create maximum number of regions obtained by drawing n given straight lines
+
+
+# 57. There are 10 vertical and horizontal squares on a plane. Each square is painted blue and green. Blue represents the sea, and green represents the land. When two green squares are in contact with the top and bottom, or right and left, they are said to be ground. The area created by only one green square is called "island". For example, there are five islands in the figure below.
+    # Write a Python program to read the mass data and find the number of islands.
+
+
+# 58. When character are consecutive in a string , it is possible to shorten the character string by replacing the character with a certain rule. For example, in the case of the character string YYYYY, if it is expressed as # 5 Y, it is compressed by one character.
+      # Write a Python program to restore the original string by entering the compressed string with this rule. However, the # character does not appear in the restored character string. Go to the editor
+      # Note: The original sentences are uppercase letters, lowercase letters, numbers, symbols, less than 100 letters, and consecutive letters are not more than 9 letters.
+
+
+# 59. A convex polygon is a simple polygon in which no line segment between two points on the boundary ever goes outside the polygon. Equivalently, it is a simple polygon whose interior is a convex set. In a convex polygon, all interior angles are less than or equal to 180 degrees, while in a strictly convex polygon all interior angles are strictly less than 180 degrees.
+      # Write a Python program that compute the area of the polygon . The vertices have the names vertex 1, vertex 2, vertex 3, ... vertex n according to the order of edge connections Go to the editor
+      # Note: The original sentences are uppercase letters, lowercase letters, numbers, symbols, less than 100 letters, and consecutive letters are not more than 9 letters.
+
+
+# 60. Internet search engine giant, such as Google accepts web pages around the world and classify them, creating a huge database. The search engines also analyze the search keywords entered by the user and create inquiries for database search. In both cases, complicated processing is carried out in order to realize efficient retrieval, but basics are all cutting out words from sentences.
+    # Write a Python program to cut out words of 3 to 6 characters length from a given sentence not more than 1024 characters
+
