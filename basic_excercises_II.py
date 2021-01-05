@@ -765,42 +765,163 @@ if a == b:
     print("This is a rhombus.")
 
 # 50. program to replace a string "Python" with "Java" and "Java" with "Python" in a given string.
-
+n = input('Input a text with two words "Python" and "Java"')
+new = n.split()
+for i in new:
+  if i=='Python':
+    new[new.index(i)] = 'Java'
+  elif i=='Java':
+    new[new.index(i)] = 'Python'
+result = ' '.join(new)
+print(result)
 
 # 51.  find the difference between the largest integer and the smallest integer which are created by 8 numbers from 0 to 9. The number that can be rearranged shall start with 0 as in 00135668
-
+print("Input an integer created by 8 numbers from 0 to 9.:")
+num = list(input())
+print("Difference between the largest and the smallest integer from the given integer:")
+print(int("".join(sorted(num,reverse=True))) - int("".join(sorted(num))))
 
 # 52. compute the sum of first n given prime numbers
-
+MAX = 105000
+print("Input a number (n≤10000) to compute the sum:(0 to exit)") 
+is_prime = [True for _ in range(MAX)]
+is_prime[0] = is_prime[1] = False
+for i in range(2, int(MAX ** (1 / 2)) + 1):
+  if is_prime[i]:
+    for j in range(i ** 2, MAX, i):
+      is_prime[j] = False 
+primes = [i for i in range(MAX) if is_prime[i]] 
+while True:
+  n = int(input())
+  if not n:
+    break
+  print("Sum of first",n,"prime numbers:")
+  print(sum(primes[:n]))
 
 # 53. program that accept an even number (>=4, Goldbach number) from the user and create a combinations that express the given number as a sum of two prime numbers. Print the number of combinations
+import sys
+from bisect import bisect_right
+from itertools import chain, compress
+print("Input an even number (0 to exit):") 
+ub = 50000
+is_prime = [0, 0, 1, 1] + [0]*(ub-3)
+is_prime[5::6] = is_prime[7::6] = [1]*int(ub/6)
+primes = [2, 3]
+append = primes.append
+ 
+for n in chain(range(5, ub, 6), range(7, ub, 6)):
+    if is_prime[n]:
+        append(n)
+        is_prime[n*3::n*2] = [0]*((ub-n)//(n*2))
+primes.sort()
 
+for n in map(int, sys.stdin):
+    if not n:
+        break
+    if n%2:
+        print("Number of combinations:")  
+        print(is_prime[n-2])
+    else:
+        print("Number of combinations:")  
+        print(len([1 for p in primes[:bisect_right(primes, n/2)] if is_prime[n-p]]))
 
 # 54. if you draw a straight line on a plane, the plane is divided into two regions. For example, if you pull two straight lines in parallel, you get three areas, and if you draw vertically one to the other you get 4 areas.
     # Write a Python program to create maximum number of regions obtained by drawing n given straight lines 
-
+while True:
+    print("Input number of straight lines (o to exit): ")
+    n=int(input())
+    if n<=0:
+        break
+    print("Number of regions:") 
+    print((n*n+n+2)//2)
 
 # 55. There are four different points on a plane, P(xp,yp), Q(xq, yq), R(xr, yr) and S(xs, ys). Write a Python program to test AB and CD are orthogonal or not.
-
+while True:
+    try:
+        print("Input xp, yp, xq, yq, xr, yr, xs, ys:")
+        x_p, y_p, x_q, y_q, x_r, y_r, x_s, y_s = map(float, input().split())
+        pq_x, pq_y = x_q - x_p, y_q - y_p
+        rs_x, rs_y = x_s - x_r, y_s - y_r
+        rs = pq_x*rs_x + pq_y*rs_y
+        if abs(rs) > 1e-10:
+            print("AB and CD are not orthogonal!")
+        else:
+            print("AB and CD are orthogonal!")
+    except:
+        break
 
 # 56. sum of all numerical values (positive integers) embedded in a sentence.
   # Write a Python program to create maximum number of regions obtained by drawing n given straight lines
+    #CONTAINS REGEX IMPLEMENTATION!!!
+import sys,re
+def test(stri):
+  print("Input some text and numeric values (<ctrl-d> to exit):")
+  print("Sum of the numeric values: ",sum([sum(map(int,re.findall(r"[0-9]{1,5}",stri)))]))
+
+print(test("sd1fdsfs23 dssd56"))
+print(test("15apple2banana"))
+print(test("flowers5fruit5"))
 
 
 # 57. There are 10 vertical and horizontal squares on a plane. Each square is painted blue and green. Blue represents the sea, and green represents the land. When two green squares are in contact with the top and bottom, or right and left, they are said to be ground. The area created by only one green square is called "island". For example, there are five islands in the figure below.
     # Write a Python program to read the mass data and find the number of islands.
-
+c=0
+def f(x,y,z):
+    if 0<=y<10 and 0<=z<10 and x[z][y]=='1':
+        x[z][y]='0'
+        for dy,dz in [[-1,0],[1,0],[0,-1],[0,1]]:f(x,y+dy,z+dz)
+print("Input 10 rows of 10 numbers representing green squares (island) as 1 and blue squares (sea) as zeros") 
+while 1:
+    try:
+        if c:input()
+    except:break
+    x = [list(input()) for _ in [0]*10]
+    c=1;b=0
+    for i in range(10):
+        for j in range(10):
+            if x[j][i]=='1':
+                b+=1;f(x,i,j)
+    print("Number of islands:")     
+    print(b)
 
 # 58. When character are consecutive in a string , it is possible to shorten the character string by replacing the character with a certain rule. For example, in the case of the character string YYYYY, if it is expressed as # 5 Y, it is compressed by one character.
       # Write a Python program to restore the original string by entering the compressed string with this rule. However, the # character does not appear in the restored character string. Go to the editor
       # Note: The original sentences are uppercase letters, lowercase letters, numbers, symbols, less than 100 letters, and consecutive letters are not more than 9 letters.
-
+def restore_original_str(a1):
+  result = ""
+  ind = 0
+  end = len(a1)
+  while ind < end:
+    if a1[ind] == "#":
+      result += a1[ind + 2] * int(a1[ind + 1])
+      ind += 3
+    else:
+      result += a1[ind]
+      ind += 1
+  return result
+print("Original text:","XY#6Z1#4023")
+print(restore_original_str("XY#6Z1#4023"))
+print("Original text:","#39+1=1#30")
+print(restore_original_str("#39+1=1#30"))
 
 # 59. A convex polygon is a simple polygon in which no line segment between two points on the boundary ever goes outside the polygon. Equivalently, it is a simple polygon whose interior is a convex set. In a convex polygon, all interior angles are less than or equal to 180 degrees, while in a strictly convex polygon all interior angles are strictly less than 180 degrees.
       # Write a Python program that compute the area of the polygon . The vertices have the names vertex 1, vertex 2, vertex 3, ... vertex n according to the order of edge connections Go to the editor
       # Note: The original sentences are uppercase letters, lowercase letters, numbers, symbols, less than 100 letters, and consecutive letters are not more than 9 letters.
+def poly_area(c):
+  add = []
+  for i in range(0, (len(c) - 2), 2):
+    add.append(c[i] * c[i + 3] - c[i + 1] * c[i + 2])
+    add.append(c[len(c) - 2] * c[1] - c[len(c) - 1] * c[0])
+    return abs(sum(add) / 2)
 
+print(poly_area([1, 0, 0, 0, 1, 1, 2, 0, -1, 1]))
 
 # 60. Internet search engine giant, such as Google accepts web pages around the world and classify them, creating a huge database. The search engines also analyze the search keywords entered by the user and create inquiries for database search. In both cases, complicated processing is carried out in order to realize efficient retrieval, but basics are all cutting out words from sentences.
     # Write a Python program to cut out words of 3 to 6 characters length from a given sentence not more than 1024 characters
 
+print("Input a sentence (1024 characters. max.)")
+yy = input()
+yy = yy.replace(",", " ")
+yy = yy.replace(".", " ")
+print("3 to 6 characters length of words:")
+print(*[y for y in yy.split() if 3 <= len(y) <= 6])
