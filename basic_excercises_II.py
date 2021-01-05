@@ -632,13 +632,27 @@ else:
     print("The point is outside the triangle.")
 
 # 41. compute and print sum of two given integers (more than or equal to zero). If given integers or the sum have more than 80 digits, print "overflow"
-
+print("Input first integer:")
+x = int(input())
+print("Input second integer:")
+y = int(input())
+if x >= 10 ** 80 or y >= 10 ** 80 or x + y >= 10 ** 80:
+    print("Overflow!")
+else:
+    print("Sum of the two integers: ",x + y)
 
 # 42. program that accepts six numbers as input and sorts them in descending order
-
+print("Input six integers:")
+nums = list(map(int, input().split()))
+nums.sort()
+nums.reverse()
+print("After sorting the said ntegers:")
+print(*nums)
 
 # 43.  test whether two lines PQ and RS are parallel. The four points are P(x1, y1), Q(x2, y2), R(x3, y3), S(x4, y4).
-
+print("Input x1,y1,x2,y2,x3,y3,xp,yp:")
+x1, y1,x2, y2, x3, y3, x4, y4 = map(float, input().split())
+print('PQ and RS are parallel.' if abs((x2 - x1)*(y4 - y3) - (x4 - x3)*(y2 - y1)) < 1e-10 else 'PQ and RS are not parallel')
 
 # 44. find the maximum sum of a contiguous subsequence from a given sequence of numbers a1, a2, a3, ... an. A subsequence of one element is also a continuous subsequence. Go to the editor
       # Input:
@@ -654,7 +668,16 @@ else:
       # Maximum sum of the said contiguous subsequence: 12
       # Input number of sequence of numbers you want to input (0 to exit):
       # 0
+numlist=[-2, -3, 4, -1, -2, 1, 5, -3]
+print(numlist)
+sumlst=[]
 
+for i in range(0,len(numlist)):
+  for j in range(2,len(numlist)+1):
+    x=sum(numlist[i:j])
+    sumlst.append(x)
+
+print("Maximum sum is : ",max(sumlst))
 
 # 45. There are two circles C1 with radius r1, central coordinate (x1, y1) and C2 with radius r2 and central coordinate (x2, y2). 
         # Write a Python program to test the followings -
@@ -663,7 +686,18 @@ else:
         #     "C1 is in C2" if C1 is in C2
         #     "Circumference of C1 and C2 intersect" if circumference of C1 and C2 intersect, and
         #     "C1 and C2 do not overlap" if C1 and C2 do not overlap.
-
+import math
+print("Input x1, y1, r1, x2, y2, r2:")
+x1,y1,r1,x2,y2,r2 = [float(i) for i in input().split()]
+d = math.sqrt((x1-x2)**2 + (y1-y2)**2)
+if d < r1-r2:
+    print("C2  is in C1")
+elif d < r2-r1:
+    print("C1  is in C2")
+elif d > r1+r2:
+    print("Circumference of C1  and C2  intersect")
+else:
+    print("C1 and C2  do not overlap")
 
 # 46. Write a Python program to that reads a date (from 2016/1/1 to 2016/12/31) and prints the day of the date. Jan. 1, 2016, is Friday. Note that 2016 is a leap year. Go to the editor
       # Input:
@@ -671,7 +705,12 @@ else:
       # Input month and date (separated by a single space):
       # 5 15
       # Name of the date: Sunday
-
+from datetime import date
+print("Input month and date (separated by a single space):")
+m, d = map(int, input().split())
+weeks = {1:'Monday',2:'Tuesday',3:'Wednesday',4:'Thursday',5:'Friday',6:'Saturday',7:'Sunday'}
+w = date.isoweekday(date(2016, m, d))
+print("Name of the date: ",weeks[w])
 
 # 47. program which reads a text (only alphabetical characters and spaces.) and prints two words. The first one is the word which is arise most frequently in the text. The second one is the word which has the maximum number of letters.
         # Input:
@@ -682,6 +721,17 @@ else:
         # d. There is only one word which has the maximum number of letters in given text.
         # Input text: Thank you for your comment and your participation.
         # Output: your participation.
+import collections
+print("Input a text in a line.")
+text_list = list(map(str, input().split()))
+sc = collections.Counter(text_list)
+common_word = sc.most_common()[0][0]
+max_char = ""
+for s in text_list:
+    if len(max_char) < len(s):
+        max_char = s
+print("\nMost frequent text and the word which has the maximum number of letters.")
+print(common_word, max_char)
 
 # 48. program that reads n digits (given) chosen from 0 to 9 and prints the number of combinations where the sum of the digits equals to another given number (s). Do not use the same digits in a combination
       # Two integers as number of combinations and their sum by a single space in a line. Input 0 0 to exit.
@@ -690,10 +740,29 @@ else:
       # 2 4
       # 0 0
       # 2
-
+import itertools
+print("Input number of combinations and sum, input 0 0 to exit:")
+while True:
+  x, y = map(int, input(). split())
+  if x == 0 and y == 0:
+    break
+  s = list(itertools.combinations(range(10), x))
+  ctr = 0
+  for i in s:
+    if sum(i) == y:
+            ctr += 1
+ 
+print(ctr)
 
 # 49.  program which reads the two adjoined sides and the diagonal of a parallelogram and check whether the parallelogram is a rectangle or a rhombus.
-
+print("Input two adjoined sides and the diagonal of a parallelogram (comma separated):")
+a,b,c = map(int, input().split(","))
+#Using Pythagoras Thm,
+if c**2 == a**2+b**2 :
+    print("This is a rectangle.")
+#Since all four sides of rhombus are equal in length. 
+if a == b:
+    print("This is a rhombus.")
 
 # 50. program to replace a string "Python" with "Java" and "Java" with "Python" in a given string.
 
