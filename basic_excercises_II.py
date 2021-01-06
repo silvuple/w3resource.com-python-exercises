@@ -1306,123 +1306,388 @@ print(first_missing_number([1, 2, 3, 4, 5, 6, 7]))
 print(first_missing_number([-2, -3, -1, 1, 2, 3]))
 
 # 81. randomly generate a list with 10 even numbers between 1 and 100 inclusive 
-
+import random
+print(random.sample([i for i in range(1,100) if i%2==0], 10))
 
 # 82. 
 '''ALREADY COVERED PREVIOUSLY'''
 
-
 # 83. test whether a given number is symmetrical or not.
-
+def is_symmetrical_num(n):
+  return str(n) == str(n)[::-1]
+print(is_symmetrical_num(121))
+print(is_symmetrical_num(0))
+print(is_symmetrical_num(122))
+print(is_symmetrical_num(990099))
+#Basically, a palindorme program.
 
 # 84. accept a list of numbers and create a list to store the count of negative number in first element and store the sum of positive numbers in second element.
+def count_sum(nums):
+    if not nums: return []
+    return [len([n for n in nums if n < 0]), sum(n for n in nums if n > 0)]
 
+print(count_sum([1, 2, 3, 4, 5]))
+print(count_sum([-1, -2, -3, -4, -5]))
+print(count_sum([1, 2, 3, -4, -5]))
+print(count_sum([1, 2, -3, -4, -5])) 
 
 # 85. An isogram (also known as a "nonpattern word") is a logological term for a word or phrase without a repeating letter. It is also used by some people to mean a word or phrase in which each letter appears the same number of times, not necessarily just once. Conveniently, the word itself is an isogram in both senses of the word, making it autological.
 # Write a Python program to check whether a given string is an "isogram" or not
+def check_isogram(str1):
+    return len(str1) == len(set(str1.lower()))
 
+print(check_isogram("w3resource"))
+print(check_isogram("w3r"))
+print(check_isogram("Python"))
+print(check_isogram("Java"))
 
 # 86. count the number of equal numbers from three given integers
+def test_three_equal(x, y, z):
+  result= set([x, y, z])
+  if len(result)==3:
+    return 0
+  else:
+    return (4 - len(result))
 
+print(test_three_equal(1, 1, 1))
+print(test_three_equal(1, 2, 2))
+print(test_three_equal(-1, -2, -3))
+print(test_three_equal(-1, -1, -1))
 
 # 87. check whether a given employee code is exactly 8 digits or 12 digits. Return True if the employee code is valid and False if it's not.
-
+def is_valid_emp_code(emp_code):
+  return len(emp_code) in [8, 12] and emp_code.isdigit()
+print(is_valid_emp_code('12345678'))
+print(is_valid_emp_code('1234567j'))
+print(is_valid_emp_code('12345678j'))
+print(is_valid_emp_code('123456789123'))
+print(is_valid_emp_code('123456abcdef'))
 
 # 88. accept two strings and test if the letters in the second string are present in the first string
-
+def string_letter_check(list_data):
+  return all([char in list_data[0].lower() for char in list_data[1].lower()])
+print(string_letter_check(["python", "ypth"]))
+print(string_letter_check(["python", "ypths"]))
+print(string_letter_check(["python", "ypthon"]))
+print(string_letter_check(["123456", "01234"]))
+print(string_letter_check(["123456", "1234"]))
 
 # 89. compute the sum of the three lowest positive numbers from a given list of numbers
+def sum_three_smallest_nums(lst):
+	return sum(sorted([x for x in lst if x > 0])[:3])
+
+print(sum_three_smallest_nums([10, 20, 30, 40, 50, 60, 7]))
+print(sum_three_smallest_nums([1, 2, 3, 4, 5]))
+print(sum_three_smallest_nums([0, 1, 2, 3, 4, 5]))
 
 
 # 90. replace all but the last five characters of a given string into "*" and returns the new masked string.
-
+def mask_string(str1):
+  return '*'*(len(str1)-5) + str1[-5:]
+print(mask_string("kdi39323swe"))
+print(mask_string("12345abcdef"))
+print(mask_string("12345")) 
 
 # 91. count the number of arguments in a given function.
+def num_of_args(*args):
+	return(len(args))
+print(num_of_args())
+print(num_of_args(1))
+print(num_of_args(1, 2))
+print(num_of_args(1, 2, 3))
+print(num_of_args(1, 2, 3, 4))
+print(num_of_args([1, 2, 3, 4]))
 
 
 # 92.  compute cumulative sum of numbers of a given list.
        # Note: Cumulative sum = sum of itself + all previous numbers in the said list
+def nums_cumulative_sum(nums_list):
+  return [sum(nums_list[:i+1]) for i in range(len(nums_list))]
 
+print(nums_cumulative_sum([10, 20, 30, 40, 50, 60, 7]))
+print(nums_cumulative_sum([1, 2, 3, 4, 5]))
+print(nums_cumulative_sum([0, 1, 2, 3, 4, 5]))
 
 # 93.  find the middle character(s) of a given string. If the length of the string is odd return the middle character and return the middle two characters if the string length is even
-
+def middle_char(txt):
+   return txt[(len(txt)-1)//2:(len(txt)+2)//2]
+print(middle_char("Python"))
+print(middle_char("PHP"))
+print(middle_char("Java"))
 
 # 94. find the largest product of the pair of adjacent elements from a given list of integers.
-
+def adjacent_num_product(list_nums):
+    return max(a*b for a, b in zip(list_nums, list_nums[1:]))
+print(adjacent_num_product([1,2,3,4,5,6]))
+print(adjacent_num_product([1,2,3,4,5]))
+print(adjacent_num_product([2,3]))
 
 # 95. check whether every even index contains an even number and every odd index contains odd number of a given list. 
-
+def odd_even_position(nums):
+	return all(nums[i]%2==i%2 for i in range(len(nums)))
+print(odd_even_position([2, 1, 4, 3, 6, 7, 6, 3]))
+print(odd_even_position([2, 1, 4, 3, 6, 7, 6, 4]))
+print(odd_even_position([4, 1, 2]))
 
 # 96. check whether a given number is a narcissistic number or not.
+def is_narcissistic_num(num):
+	return num == sum([int(x) ** len(str(num)) for x in str(num)])
 
+print(is_narcissistic_num(153))
+print(is_narcissistic_num(370))
+print(is_narcissistic_num(407))
+print(is_narcissistic_num(409))
+print(is_narcissistic_num(1634))
+print(is_narcissistic_num(8208))
+print(is_narcissistic_num(9474))
+print(is_narcissistic_num(9475))
 
 # 97. find the highest and lowest number from a given string of space separated integers
+def highest_lowest_num(str1):
+  num_list = list(map(int, str1.split()))
+  return max(num_list), min(num_list)
+
+print(highest_lowest_num("1 4 5 77 9 0"))
+print(highest_lowest_num("-1 -4 -5 -77 -9 0"))
+print(highest_lowest_num("0 0"))
 
 
 # 98. check whether a sequence of numbers has an increasing trend or not.
-
+def increasing_trend(nums):
+    if (sorted(nums) == nums):
+        return True
+    else:
+        return False
+print(increasing_trend([1,2,3,4]))
+print(increasing_trend([1,2,5,3,4]))
+print(increasing_trend([-1,-2,-3,-4]))
+print(increasing_trend([-4,-3,-2,-1]))
+print(increasing_trend([1,2,3,4,0]))
 
 # 99. program to find the position of the second occurrence of a given string in another given string. If there is no such string return -1
-
+def find_string(txt, str1):
+	return txt.find(str1, txt.find(str1)+1)
+print(find_string("The quick brown fox jumps over the lazy dog", "the"))
+print(find_string("the quick brown fox jumps over the lazy dog", "the"))
 
 # 100. compute the sum of all items of a given array of integers where each integer is multiplied by its index. Return 0 if there is no number 
+def sum_index_multiplier(nums):
+	return sum(j*i for i, j in enumerate(nums))
 
+print(sum_index_multiplier([1,2,3,4]))
+print(sum_index_multiplier([-1,-2,-3,-4]))
+print(sum_index_multiplier([]))
 
 # 101. find the name of the oldest student from a given dictionary containing the names and ages of a group of students. 
+def oldest_student(students):
+	return max(students, key=students.get)
 
+print(oldest_student({"Bernita Ahner": 12, "Kristie Marsico": 11, 
+                      "Sara Pardee": 14, "Fallon Fabiano": 11, 
+                      "Nidia Dominique": 15})) 
+print(oldest_student({"Nilda Woodside": 12, "Jackelyn Pineda": 12.2, 
+                      "Sofia Park": 12.4, "Joannie Archibald": 12.6, 
+                      "Becki Saunder": 12.7})) 
 
 # 102. create a new string with no duplicate consecutive letters from a given string. 
+def no_consecutive_letters (txt):
+    return txt[0] + ''.join(txt[i] for i in range(1,len(txt)) if txt[i] != txt[i-1])
 
+print(no_consecutive_letters("PPYYYTTHON"))
+print(no_consecutive_letters("PPyyythonnn"))
+print(no_consecutive_letters("Java"))
+print(no_consecutive_letters("PPPHHHPPP")) 
 
 # 103. check whether two given lines are parallel or not.
-
+def parallel_lines(line1, line2):
+  return line1[0]/line1[1] == line2[0]/line2[1]
+#2x + 3y = 4, 2x + 3y = 8
+print(parallel_lines([2,3,4], [2,3,8]))
+#2x + 3y = 4, 4x - 3y = 8
+print(parallel_lines([2,3,4], [4,-3,8])) 
 
 # 104.  find the lucky number(s) in a given matrix.
+        # Lucky number in a Matrix: Maximum in its column and minimum in its row.
+def lucky_Numbers(matrix):
+    result = set(map(min, matrix)) & set(map(max, zip(*matrix)))
+    return list(result)
 
+m1 = [[1,2], [2,3]]
+print("Original matrix:",m1)
+print("Lucky number(s) in the said matrix: ",lucky_Numbers(m1))
+
+m1 = [[1,2,3], [3,4,5]]
+print("\nOriginal matrix:",m1)
+print("Lucky number(s) in the said matrix: ",lucky_Numbers(m1))
+
+m1 = [[7,5,6], [3,4,4], [6,5,7]]
+print("\nOriginal matrix:",m1)
+print("Lucky number(s) in the said matrix: ",lucky_Numbers(m1))
 
 # 105. check whether a given sequence is linear, quadratic or cubic.
-
+def Seq_Linear_Quadratic_Cubic(seq_nums):
+  seq_nums = [seq_nums[x] - seq_nums[x-1] for x in range(1, len(seq_nums))]
+  if len(set(seq_nums)) == 1: return "Linear Sequence"
+  seq_nums = [seq_nums[x] - seq_nums[x-1] for x in range(1, len(seq_nums))]
+  if len(set(seq_nums)) == 1: return "Quadratic Sequence"
+  seq_nums = [seq_nums[x] - seq_nums[x-1] for x in range(1, len(seq_nums))]
+  if len(set(seq_nums)) == 1: return "Cubic Sequence"
+  
+print(Seq_Linear_Quadratic_Cubic([0,2,4,6,8,10]))
+print(Seq_Linear_Quadratic_Cubic([1,4,9,16,25]))
+print(Seq_Linear_Quadratic_Cubic([0,12,10,0,-12,-20]))
+print(Seq_Linear_Quadratic_Cubic([1,2,3,4,5]))
 
 # 106. test whether a given integer is pandigital number or not.
+def is_pandigital_num(n):
+    return len(set(str(n))) == 10
 
+print(is_pandigital_num(1023456897))
+print(is_pandigital_num(1023456798))
+print(is_pandigital_num(1023457689))
+print(is_pandigital_num(1023456789))
+print(is_pandigital_num(102345679))
 
 # 107. check whether a given number is Oddish or Evenish.
-
+def oddish_evenish_num(n):
+	return 'Oddish' if sum(map(int, str(n))) % 2 else 'Evenish'
+print(oddish_evenish_num(120))
+print(oddish_evenish_num(321))
+print(oddish_evenish_num(43))
+print(oddish_evenish_num(4433))
+print(oddish_evenish_num(373))
 
 # 108. rogram that takes three integers and check whether the last digit of first number * the last digit of second number = the last digit of third number.
+def check_last_digit(x, y, z):
+  return str(x*y)[-1] == str(z)[-1]
+
+print(check_last_digit(12, 22, 44))
+print(check_last_digit(145, 122, 1010))
+print(check_last_digit(0, 22, 40))
+print(check_last_digit(1, 22, 40))
+print(check_last_digit(145, 122, 101))
 
 
 # 109. program find the indices of all occurrences of a given item in a given list.
+def indices_in_list(nums_list, n):
+	return [idx for idx, i in enumerate(nums_list) if i == n]
 
+print(indices_in_list([1,2,3,4,5,2], 2))
+print(indices_in_list([3,1,2,3,4,5,6,3,3], 3))
+print(indices_in_list([1,2,3,-4,5,2,-4], -4))
 
 # 110. program to remove two duplicate numbers from a given number of list.
-
+def two_unique_nums(nums):
+  return [i for i in nums if nums.count(i)==1]
+print(two_unique_nums([1,2,3,2,3,4,5]))
+print(two_unique_nums([1,2,3,2,4,5]))
+print(two_unique_nums([1,2,3,4,5]))
 
 # 111. check whether two given circles (given center (x,y) and radius) are intersecting. Return true for intersecting otherwise false.
-
+def is_circle_collision(circle1, circle2):
+   x1, y1, r1 = circle1
+   x2, y2, r2 = circle2
+   distance = ((x1-x2)**2 + (y1-y2)**2)**0.5
+   return distance <= r1 + r2
+print(is_circle_collision([1,2, 4], [1,2, 8]))
+print(is_circle_collision([0,0, 2], [10,10, 5]))
 
 # 112. compute the digit distance between two integers.
-
+def digit_distance_nums(n1, n2):
+         return sum(map(int,str(abs(n1-n2))))
+print(digit_distance_nums(123, 256))
+print(digit_distance_nums(23, 56))
+print(digit_distance_nums(1, 2))
+print(digit_distance_nums(24232, 45645))
 
 # 113. to reverse all the words which have even length.
-
+def reverse_even(txt):
+         return ' '.join(i[::-1] if not len(i)%2 else i for i in txt.split())
+print(reverse_even("The quick brown fox jumps over the lazy dog"))
+print(reverse_even("Python Exercises"))
 
 # 114. to print letters from the English alphabet from a-z and A-Z
-
+import string
+print("Alphabet from a-z:")
+for letter in string.ascii_lowercase:
+   print(letter, end =" ")
+print("\nAlphabet from A-Z:")
+for letter in string.ascii_uppercase:
+   print(letter, end =" ")
 
 # 115. generate and prints a list of numbers from 1 to 10.
-
+nums = range(1,10)
+print(list(nums))
+print(list(map(str, nums)))
 
 # 116. identify nonprime numbers between 1 to 100 (integers). Print the nonprime numbers.
-
+import math
+def is_not_prime(n):
+    ans = False
+    for i in range(2, int(math.sqrt(n)) + 1):
+        if n % i == 0:
+            ans = True
+    return ans
+print("Nonprime numbers between 1 to 100:")
+for x in filter(is_not_prime, range(1, 101)):
+    print(x)
 
 # 117. make a request to a web page, and test the status code, also display the html code of the specified web page.
-
+import requests
+url = 'http://www.example.com/'
+headers = {'User-Agent': 'Mozilla/5.0 (Macintosh) Gecko/20100101 Firefox/38.0'}
+request = requests.get(url, headers=headers)
+print("Web page status: ", request)
+print("\nHTML code of the above web page:")
+if request.ok:
+    print(request.text)
 
 # 118. In multiprocessing, processes are spawned by creating a Process object. Write a Python program to show the individual process IDs (parent process, process id etc.) involved
-
+from multiprocessing import Process
+import os
+def info(title):
+    print(title)
+    print('module name:', __name__)
+    print('parent process:', os.getppid())
+    print('process id:', os.getpid())
+def f(name):
+    info('function f')
+    print('hello', name)
+if __name__ == '__main__':
+    info('Main line')
+    p = Process(target=f, args=('bob',))
+    p.start()
+    p.join()
 
 # 119. to check if two given numbers are coprime or not. Return True if two numbers are coprime otherwise return false.
-
+def gcd(p,q):
+# Create the gcd of two positive integers.
+    while q != 0:
+        p, q = q, p%q
+    return p
+def is_coprime(x, y):
+    return gcd(x, y) == 1
+print(is_coprime(17, 13))
+print(is_coprime(17, 21))
+print(is_coprime(15, 21))
+print(is_coprime(25, 45))
 
 # 120. calculate Euclid's totient function of a given integer. Use a primitive method to calculate Euclid's totient function.
+def gcd(p,q):
+# Create the gcd of two positive integers.
+    while q != 0:
+        p, q = q, p%q
+    return p
+
+def is_coprime(x, y):
+    return gcd(x, y) == 1
+
+def phi_func(x):
+    if x == 1:
+        return 1
+    else:
+        n = [y for y in range(1,x) if is_coprime(x,y)]
+        return len(n)
+print(phi_func(10))
+print(phi_func(15))
+print(phi_func(33))
