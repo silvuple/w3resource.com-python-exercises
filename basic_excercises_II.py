@@ -1121,39 +1121,308 @@ print(count_Primes_nums(100))
 # Write a Python program to check if two given strings are isomorphic to each other or not
 # Write a Python program to find the longest common prefix string amongst a given array of strings. Return false If there is no common prefix.
 # For Example, longest common prefix of "abcdefgh" and "abcefgh" is "abc"
+def isIsomorphic(str1, str2):          
+    dict_str1 = {}
+    dict_str2 = {}
+    
+    for i, value in enumerate(str1):
+        dict_str1[value] = dict_str1.get(value, []) + [i]
+            
+    for j, value in enumerate(str2):
+        dict_str2[value] = dict_str2.get(value, []) + [j]
+    
+    if sorted(dict_str1.values()) == sorted(dict_str2.values()):
+        return True
+    else:
+        return False
+
+print(isIsomorphic("foo", "bar"));         
+print(isIsomorphic("bar", "foo"));      
+print(isIsomorphic("paper", "title"));   
+print(isIsomorphic("title", "paper"));
+print(isIsomorphic("apple", "orange"));
+print(isIsomorphic("aa", "ab"));
+print(isIsomorphic("ab", "aa"));
   
 # 70. program to find the longest common prefix string amongst a given array of strings. Return false If there is no common prefix.
 # For Example, longest common prefix of "abcdefgh" and "abcefgh" is "abc"
+def longest_Common_Prefix(str1):
+    if not str1:
+        return ""
+    short_str = min(str1,key=len)
+    for i, char in enumerate(short_str):
+        for other in str1:
+            if other[i] != char:
+                return short_str[:i]
+    return short_str 
 
- 
+print(longest_Common_Prefix(["abcdefgh","abcefgh"]))
+print(longest_Common_Prefix(["w3r","w3resource"]))
+print(longest_Common_Prefix(["Python","PHP", "Perl"]))
+print(longest_Common_Prefix(["Python","PHP", "Java"]))
+
 # 71. program to reverse only the vowels of a given string
-
+def reverse_vowels(str1):
+	vowels = ""
+	for char in str1:
+		if char in "aeiouAEIOU":
+			vowels += char
+	result_string = ""
+	for char in str1:
+		if char in "aeiouAEIOU":
+			result_string += vowels[-1]
+			vowels = vowels[:-1]
+		else:
+			result_string += char
+	return result_string
+print(reverse_vowels("w3resource"))
+print(reverse_vowels("Python"))
+print(reverse_vowels("Perl"))
+print(reverse_vowels("USA"))
 
 # 72. program to check whether a given integer is a palindrome or not.
-
+def is_Palindrome(n):
+    return str(n) == str(n)[::-1]
+print(is_Palindrome(100))
+print(is_Palindrome(252))
+print(is_Palindrome(-838)) 
 
 # 73. program to remove the duplicate elements of a given array of numbers such that each element appear only once and return the new length of the given array. 
+def remove_duplicates(nums):
+    for i in range (len(nums)-1, 0, -1):
+        if nums[i] == nums[i-1]:
+            del nums[i-1]
+    return len(nums)
 
+print(remove_duplicates([0,0,1,1,2,2,3,3,4,4,4]))
+print(remove_duplicates([1, 2, 2, 3, 4, 4]))
 
 # 74. program to calculate the maximum profit from selling and buying values of stock. An array of numbers represent the stock prices in chronological order. For example, given [8, 10, 7, 5, 7, 15], the function will return 10, since the buying value of the stock is 5 dollars and sell value is 15 dollars.
+def buy_and_sell(stock_price):
+    max_profit_val, current_max_val = 0, 0 
+    for price in reversed(stock_price):                       
+        current_max_val = max(current_max_val, price)          
+        potential_profit = current_max_val - price          
+        max_profit_val = max(potential_profit, max_profit_val)
+    return max_profit_val
 
+print(buy_and_sell([8, 10, 7, 5, 7, 15]))
+print(buy_and_sell([1, 2, 8, 1]))
+print(buy_and_sell([]))
 
 # 75. program to remove all instances of a given value from a given array of integers and find the length of the new array.
-
+def remove_element(array_nums, val):
+    i = 0
+    while i < len(array_nums):
+        if array_nums[i] == val:
+            array_nums.remove(array_nums[i])
+        else:
+            i += 1
+    return len(array_nums)
+print(remove_element([1, 2, 3, 4, 5, 6, 7, 5], 5))
+print(remove_element([10,10,10,10,10], 10)) 
+print(remove_element([10,10,10,10,10], 20)) 
+print(remove_element([], 1))
 
 # 76.  program to find the starting and ending position of a given value in a given array of integers, sorted in ascending order
-
+def search_Range(array_nums, target_val):
+  result_arra = []
+  start_pos = 0
+  end_pos = 0
+  for i in range(len(array_nums)):
+      if target_val == array_nums[i] and start_pos == -1:
+          start_pos = i
+          end_pos = i
+      elif target_val == array_nums[i] and start_pos != -1:
+          end_pos = i
+  result_arra.append(start_pos)
+  result_arra.append(end_pos)
+  return result_arra
+print(search_Range([5, 7, 7, 8, 8, 8], 8))
+print(search_Range([1, 3, 6, 9, 13, 14], 4))
+print(search_Range([5, 7, 7, 8, 10], 8))
 
 # 77. 
 '''SOLUTION ALREADY COVERED UNDER Q. 74'''
 
 
 # 78. program to print a given N by M matrix of numbers line by line in forward > backwards > forward >... order.
+def print_matrix(nums):
+    flag = True 
+    
+    for line in nums:
 
+        if flag == True: 
+            i = 0
+            while i < len(line):
+                print(line[i])
+                i += 1
+            flag = False
+
+        else: 
+            i = -1
+            while i > -1 * len(line) - 1:
+                print(line[i])
+                i = i - 1
+            flag = True
+print_matrix([[1, 2, 3, 4],
+              [5, 6, 7, 8],
+              [0, 6, 2, 8],
+              [2, 3, 0, 2]])
 
 # 79. program to compute the largest product of three integers from a given list of integers.
-
+def largest_product_of_three(nums):
+    max_val = nums[1]
+    for i in range(len(nums)):
+        for j in range(i+1, len(nums)):
+            for k in range(j+1, len(nums)):
+                max_val = max(nums[i] * nums[j] * nums[k], max_val)
+    return max_val
+    
+print(largest_product_of_three([-10, -20, 20, 1]))
+print(largest_product_of_three([-1, -1, 4, 2, 1]))
+print(largest_product_of_three([1, 2, 3, 4, 5, 6]))
 
 # 80.  program to find the first missing positive integer that does not exist in a given list
+def first_missing_number(nums):
+    if len(nums) == 0:
+        return 1        
+    nums.sort()
+    smallest_int_num = 0
+    for i in range(len(nums) - 1):
+        if nums[i] <= 0 or nums[i] == nums[i + 1]:
+            continue
+        else:
+            if nums[i + 1] - nums[i] != 1:
+                smallest_int_num = nums[i] + 1
+                return smallest_int_num    
+    if smallest_int_num == 0:
+        smallest_int_num = nums[-1] + 1
+    return smallest_int_num
+
+print(first_missing_number([2, 3, 7, 6, 8, -1, -10, 15, 16])) 
+print(first_missing_number([1, 2, 4, -7, 6, 8, 1, -10, 15]))
+print(first_missing_number([1, 2, 3, 4, 5, 6, 7]))
+print(first_missing_number([-2, -3, -1, 1, 2, 3]))
+
+# 81. randomly generate a list with 10 even numbers between 1 and 100 inclusive 
 
 
+# 82. 
+'''ALREADY COVERED PREVIOUSLY'''
+
+
+# 83. test whether a given number is symmetrical or not.
+
+
+# 84. accept a list of numbers and create a list to store the count of negative number in first element and store the sum of positive numbers in second element.
+
+
+# 85. An isogram (also known as a "nonpattern word") is a logological term for a word or phrase without a repeating letter. It is also used by some people to mean a word or phrase in which each letter appears the same number of times, not necessarily just once. Conveniently, the word itself is an isogram in both senses of the word, making it autological.
+# Write a Python program to check whether a given string is an "isogram" or not
+
+
+# 86. count the number of equal numbers from three given integers
+
+
+# 87. check whether a given employee code is exactly 8 digits or 12 digits. Return True if the employee code is valid and False if it's not.
+
+
+# 88. accept two strings and test if the letters in the second string are present in the first string
+
+
+# 89. compute the sum of the three lowest positive numbers from a given list of numbers
+
+
+# 90. replace all but the last five characters of a given string into "*" and returns the new masked string.
+
+
+# 91. count the number of arguments in a given function.
+
+
+# 92.  compute cumulative sum of numbers of a given list.
+       # Note: Cumulative sum = sum of itself + all previous numbers in the said list
+
+
+# 93.  find the middle character(s) of a given string. If the length of the string is odd return the middle character and return the middle two characters if the string length is even
+
+
+# 94. find the largest product of the pair of adjacent elements from a given list of integers.
+
+
+# 95. check whether every even index contains an even number and every odd index contains odd number of a given list. 
+
+
+# 96. check whether a given number is a narcissistic number or not.
+
+
+# 97. find the highest and lowest number from a given string of space separated integers
+
+
+# 98. check whether a sequence of numbers has an increasing trend or not.
+
+
+# 99. program to find the position of the second occurrence of a given string in another given string. If there is no such string return -1
+
+
+# 100. compute the sum of all items of a given array of integers where each integer is multiplied by its index. Return 0 if there is no number 
+
+
+# 101. find the name of the oldest student from a given dictionary containing the names and ages of a group of students. 
+
+
+# 102. create a new string with no duplicate consecutive letters from a given string. 
+
+
+# 103. check whether two given lines are parallel or not.
+
+
+# 104.  find the lucky number(s) in a given matrix.
+
+
+# 105. check whether a given sequence is linear, quadratic or cubic.
+
+
+# 106. test whether a given integer is pandigital number or not.
+
+
+# 107. check whether a given number is Oddish or Evenish.
+
+
+# 108. rogram that takes three integers and check whether the last digit of first number * the last digit of second number = the last digit of third number.
+
+
+# 109. program find the indices of all occurrences of a given item in a given list.
+
+
+# 110. program to remove two duplicate numbers from a given number of list.
+
+
+# 111. check whether two given circles (given center (x,y) and radius) are intersecting. Return true for intersecting otherwise false.
+
+
+# 112. compute the digit distance between two integers.
+
+
+# 113. to reverse all the words which have even length.
+
+
+# 114. to print letters from the English alphabet from a-z and A-Z
+
+
+# 115. generate and prints a list of numbers from 1 to 10.
+
+
+# 116. identify nonprime numbers between 1 to 100 (integers). Print the nonprime numbers.
+
+
+# 117. make a request to a web page, and test the status code, also display the html code of the specified web page.
+
+
+# 118. In multiprocessing, processes are spawned by creating a Process object. Write a Python program to show the individual process IDs (parent process, process id etc.) involved
+
+
+# 119. to check if two given numbers are coprime or not. Return True if two numbers are coprime otherwise return false.
+
+
+# 120. calculate Euclid's totient function of a given integer. Use a primitive method to calculate Euclid's totient function.
