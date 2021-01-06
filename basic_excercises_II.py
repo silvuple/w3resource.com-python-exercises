@@ -925,3 +925,92 @@ yy = yy.replace(",", " ")
 yy = yy.replace(".", " ")
 print("3 to 6 characters length of words:")
 print(*[y for y in yy.split() if 3 <= len(y) <= 6])
+
+#####EXTRA PROBLEM#####
+'''LCM and GCD'''
+def gcd(x, y):
+    gcd = 1
+    # Assign z the highest value, either x or y
+    if x % y == 0:
+        return y
+    # Iterate in reverse manner, make sure to typecast y/2 as int
+    for z in range(int(y / 2), 0, -1):
+        if x % z == 0 and y % z == 0:
+            gcd = z
+            break
+
+    return gcd
+
+def lcm(x, y):
+    z = x if x > y else y
+    while (True):
+        if (z % x == 0 and z % y == 0):
+            lcm = z
+            break
+        z += 1
+
+    return lcm
+
+print(gcd(14, 42))
+print(lcm(12, 17))
+
+# 61.
+# 
+#  
+# 62.
+# 
+#  
+# 63.
+# 
+#  
+# 64.
+# 
+#  
+# 65.
+# 
+#  
+# 66.
+# 
+#  
+# 67.
+# 
+ 
+# 68.
+# 
+ 
+# 69.
+# 
+ 
+# 70.
+# 
+ 
+# 71.
+
+
+# 72.
+
+
+# 73.
+
+
+# 74.
+
+
+# 75.
+
+
+# 76.
+
+
+# 77.
+
+
+# 78.
+
+
+# 79.
+
+
+# 80.
+
+
