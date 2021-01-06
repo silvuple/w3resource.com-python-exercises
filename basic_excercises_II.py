@@ -954,63 +954,206 @@ def lcm(x, y):
 print(gcd(14, 42))
 print(lcm(12, 17))
 
-# 61.
-# 
-#  
-# 62.
-# 
-#  
-# 63.
-# 
-#  
-# 64.
-# 
-#  
-# 65.
-# 
-#  
-# 66.
-# 
-#  
-# 67.
-# 
+# 61. Arrange integers (0 to 99) as narrow hilltop, as illustrated in Figure 1. Reading such data representing huge, when starting from the top and proceeding according to the next rule to the bottom. Write a Python program that compute the maximum value of the sum of the passing integers
+import sys
+print("Input the numbers (ctrl+d to exit):")
+nums = [list(map(int, l.split(","))) for l in sys.stdin]
+mvv = nums[0]
+
+for i in range(1, (len(nums)+1)//2):
+    rvv = [0]*(i+1)
+    for j in range(i):
+        rvv[j] = max(rvv[j], mvv[j]+nums[i][j])
+        rvv[j+1] = max(rvv[j+1], mvv[j]+nums[i][j+1])
+    mvv = rvv
+
+for i in range((len(nums)+1)//2, len(nums)):
+    rvv = [0]*(len(mvv)-1)
+    for j in range(len(rvv)):
+        rvv[j] = max(mvv[j], mvv[j+1]) + nums[i][j]
+    mvv = rvv
+print("Maximum value of the sum of integers passing according to the rule on one line.") 
+print(mvv[0])
+
+
+# 62. program to find the number of combinations that satisfy p + q + r + s = n where n is a given number <= 4000 and p, q, r, s in the range of 0 to 1000.
+from collections import Counter
+print("Input a positive integer: (ctrl+d to exit)") 
+pair_dict = Counter()
+for i in range(2001):
+  pair_dict[i] = min(i, 2000 - i) + 1 
  
-# 68.
-# 
+while True:
+  try:
+    n = int(input())
+    ans = 0
+    for i in range(n + 1):
+      ans += pair_dict[i] * pair_dict[n - i]
+    print("Number of combinations of a,b,c,d:",ans) 
+  except EOFError:
+    break
+
+# 63.  program which adds up columns and rows of given table as shown in the specified figure.
+while True:
+    print("Input number of rows/columns (0 to exit)")
+    n = int(input())
+    if n == 0:
+        break
+    print("Input cell value:")
+    x = []
+    for i in range(n):
+        x.append([int(num) for num in input().split()])
+
+    for i in range(n):
+        sum = 0
+        for j in range(n):
+            sum += x[i][j]
+        x[i].append(sum)
+
+    x.append([])
+    for i in range(n + 1):
+        sum = 0
+        for j in range(n):
+            sum += x[j][i]
+        x[n].append(sum)
+    print("Result:")
+    for i in range(n + 1):
+        for j in range(n + 1):
+            print('{0:>5}'.format(x[i][j]), end="")
+        print()
+
+
+# 64.  Given a list of numbers and a number k, write a Python program to check whether the sum of any two numbers from the list is equal to k or not
+def check_sum(nums, k):   
+    for i in range(len(nums)):
+        for j in range(i+1, len(nums)):
+            if nums[i] + nums[j] == k:
+                return True
+    return False
+print(check_sum([12, 5, 0, 5], 10))
+print(check_sum([20, 20, 4, 5], 40))
+print(check_sum([1, -1], 0))
+print(check_sum([1, 1, 0], 0))
+
+# 65. In mathematics, a subsequence is a sequence that can be derived from another sequence by deleting some or no elements without changing the order of the remaining elements. For example, the sequence (A,B,D) is a subsequence of (A,B,C,D,E,F) obtained after removal of elements C, E, and F. The relation of one sequence being the subsequence of another is a preorder.
+    # The subsequence should not be confused with substring (A,B,C,D) which can be derived from the above string (A,B,C,D,E,F) by deleting substring (E,F). The substring is a refinement of the subsequence.
+    # The list of all subsequences for the word "apple" would be "a", "ap", "al", "ae", "app", "apl", "ape", "ale", "appl", "appe", "aple", "apple", "p", "pp", "pl", "pe", "ppl", "ppe", "ple", "pple", "l", "le", "e", "".
+    # Write a Python program to find the longest word in set of words which is a subsequence of a given string.
+def longest_word_sequence(s, d):
+	long_word = ""
+	
+	for word in d: 
+		temp_word = ''	
+		j = 0
+		for letter in word: 
+
+			for i in range(j, len(s)): 
+
+				if letter == s[i]: 
+					temp_word += letter 
+					j = i                  
+					break
+				else:				
+					continue        
+
+		if (temp_word) == word and len(long_word) < len(temp_word):
+			long_word = temp_word
+
+		else:
+			continue
+	return long_word
+
+print(longest_word_sequence("Green", {"Gn", "Gren", "ree", "en"}))
+print(longest_word_sequence("pythonexercises", {"py", "ex", "exercises"}))
+
+
+# 66. A happy number is defined by the following process:
+# Starting with any positive integer, replace the number by the sum of the squares of its digits, and repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1. Those numbers for which this process ends in 1 are happy numbers, while those that do not end in 1 are unhappy numbers.
+# Write a Python program to check whether a number is "happy" or not.
+def is_Happy_num(n):
+  past = set()
+  while n != 1:
+        n = sum(int(i)**2 for i in str(n))
+        if n in past:
+            return False
+        past.add(n)
+  return True
+print(is_Happy_num(7))
+print(is_Happy_num(932))
+print(is_Happy_num(6))
+
+
+# 67. program to find and print the first 10 happy numbers
+def happy_numbers(n):
+    past = set()			
+    while n != 1:
+        n = sum(int(i)**2 for i in str(n))
+        if n in past:
+            return False
+        past.add(n)
+    return True
+print([x for x in range(500) if happy_numbers(x)][:10])
+
+
+# 68. program to count the number of prime numbers less than a given non-negative number
+def count_Primes_nums(n):
+    ctr = 0
+    
+    for num in range(n):
+        if num <= 1:
+            continue
+        for i in range(2, num):
+            if (num % i) == 0:
+                break
+        else:
+            ctr += 1
+
+    return ctr
+
+print(count_Primes_nums(10))
+print(count_Primes_nums(100))
+
+
+# # 69. In abstract algebra, a group isomorphism is a function between two groups that sets up a one-to-one correspondence between the elements of the groups in a way that respects the given group operations. If there exists an isomorphism between two groups, then the groups are called isomorphic.
+# Two strings are isomorphic if the characters in string A can be replaced to get string B
+# Given "foo", "bar", return false.
+# Given "paper", "title", return true.
+# Write a Python program to check if two given strings are isomorphic to each other or not
+# Write a Python program to find the longest common prefix string amongst a given array of strings. Return false If there is no common prefix.
+# For Example, longest common prefix of "abcdefgh" and "abcefgh" is "abc"
+  
+# 70. program to find the longest common prefix string amongst a given array of strings. Return false If there is no common prefix.
+# For Example, longest common prefix of "abcdefgh" and "abcefgh" is "abc"
+
  
-# 69.
-# 
- 
-# 70.
-# 
- 
-# 71.
+# 71. program to reverse only the vowels of a given string
 
 
-# 72.
+# 72. program to check whether a given integer is a palindrome or not.
 
 
-# 73.
+# 73. program to remove the duplicate elements of a given array of numbers such that each element appear only once and return the new length of the given array. 
 
 
-# 74.
+# 74. program to calculate the maximum profit from selling and buying values of stock. An array of numbers represent the stock prices in chronological order. For example, given [8, 10, 7, 5, 7, 15], the function will return 10, since the buying value of the stock is 5 dollars and sell value is 15 dollars.
 
 
-# 75.
+# 75. program to remove all instances of a given value from a given array of integers and find the length of the new array.
 
 
-# 76.
+# 76.  program to find the starting and ending position of a given value in a given array of integers, sorted in ascending order
 
 
-# 77.
+# 77. 
+'''SOLUTION ALREADY COVERED UNDER Q. 74'''
 
 
-# 78.
+# 78. program to print a given N by M matrix of numbers line by line in forward > backwards > forward >... order.
 
 
-# 79.
+# 79. program to compute the largest product of three integers from a given list of integers.
 
 
-# 80.
+# 80.  program to find the first missing positive integer that does not exist in a given list
 
 
