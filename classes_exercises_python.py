@@ -361,3 +361,44 @@ print(X.__class__)
 print(type(X).__name__)
 ##print(type(X).__bases__)
 ##print(type(X).__dict__)
+
+'''EXTRA: EXCERCISE ABOUT PRIVATE AND PUBLIC MEMBERS'''
+class Vehicle:
+    def __init__(self, color, maxSpeed):
+        self.color=color
+        self.__maxSpeed=int(maxSpeed)
+    '''
+    We use getters and setters to access private class members in subclass defined in parent class.
+    Getters --> to return the value while printing
+    Setters --> to update the value of the private member of class
+    Pay careful attention to syntax
+    '''
+    
+    '''
+    NOTE: Single Underscore for Protected members (for programmmer's convenience and double underscore for private members, known by compiler.) 
+    _ is protected
+    __ is private  
+    '''
+
+    def getMaxSpeed(self):
+        return self.__maxSpeed
+
+    def setMaxSpeed(self, maxSpeed):
+         self.__maxSpeed=maxSpeed
+
+class Car(Vehicle):    
+    def __init__(self, color, maxSpeed,  numGears, isConvertible):
+        #inheriting the members from the Vehicle class using super().__init__(x,y)
+        super().__init__(color, maxSpeed)
+        self.numGears=int(numGears)
+        self.isConvertible=isConvertible
+    
+    def printCar(self):
+        print("Color: ", self.color)
+        print("Max Speed: ", self.getMaxSpeed(), " kmph")
+        print("Number of Gears: ", self.numGears)
+        print("Convertible?: ", self.isConvertible)
+
+c=Car('Purple', 390, 6, 'Y')
+c.printCar()
+        
