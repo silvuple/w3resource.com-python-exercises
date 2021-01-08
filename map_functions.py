@@ -84,24 +84,114 @@ print("Student weight:")
 print(students_data_weight) 
 
 # 10. Write a Python program to compute the square of first N Fibonacci numbers, using map function and generate a list of the numbers. 
- 
+import itertools
+n = 10
+def fibonacci_nums(x=0, y=1):
+    yield x
+    while True:
+        yield y
+        x, y = y, x + y
+print("First 10 Fibonacci numbers:")
+result = list(itertools.islice(fibonacci_nums(), n))
+print(result)
+square = lambda x: x * x 
+print("\nAfter squaring said numbers of the list:")
+print(list(map(square, result)))
 
 # 11. Write a Python program to compute the sum of elements of an given array of integers, use map() function. 
- 
+from array import array
+def array_sum(nums_arr):
+    sum_n = 0
+    for n in nums_arr:
+        sum_n += n
+    return sum_n
 
-# 12. Write a Python program to find the ration of positive numbers, negative numbers and zeroes in an array of integers. 
+nums = array('i', [1, 2, 3, 4, 5, -15])
+print("Original array:",nums)
+nums_arr = list(map(int, nums))
+result = array_sum(nums_arr)
+print("Sum of all elements of the said array:")
+print(result)
  
+# 12. Write a Python program to find the ration of positive numbers, negative numbers and zeroes in an array of integers. 
+from array import array
+def plusMinus(nums):
+    n = len(nums)
+    n1 = n2 = n3 = 0
+    for x in nums:
+        if x > 0:
+            n1 += 1
+        elif x < 0:
+            n2 += 1
+        else:
+            n3 += 1
+    return round(n1/n,2), round(n2/n,2), round(n3/n,2)
+
+nums = array('i', [0, 1, 2, -1, -5, 6, 0, -3, -2, 3, 4, 6, 8])
+print("Original array:",nums)
+nums_arr = list(map(int, nums))
+result = plusMinus(nums_arr)
+print("Ratio of positive numbers, negative numbers and zeroes: ", result)
+nums = array('i', [2, 1, 2, -1, -5, 6, 4, -3, -2, 3, 4, 6, 8])
+print("\nOriginal array:",nums)
+nums_arr = list(map(int, nums))
+result = plusMinus(nums_arr)
+print("Ratio of positive numbers, negative numbers and zeroes: ", result)
 
 # 13. Write a Python program to count the same pair in two given lists. use map() function. 
- 
+def isSame(x,y):
+    answer= True if x==y else False
+    return answer
+
+def count_same_pair(nums1, nums2):
+    result = sum(map(isSame, nums1, nums2))
+    return result
+
+nums1 = [1,2,3,4,5,6,7,8]
+nums2 = [2,2,3,1,2,6,7,9]
+print("Original lists:")
+print(nums1)
+print(nums2)
+print("\nNumber of same pair of the said two given lists:")
+print(count_same_pair(nums1, nums2)) 
 
 # 14. Write a Python program to interleave two given list into another list randomly using map() function. 
- 
+import random
+def randomly_interleave(nums1, nums2):
+    result =  list(map(next, random.sample([iter(nums1)]*len(nums1) + [iter(nums2)]*len(nums2), len(nums1)+len(nums2))))
+    return result
+nums1 = [1,2,7,8,3,7]
+nums2 = [4,3,8,9,4,3,8,9]
+print("Original lists:") 
+print(nums1)
+print(nums2)
+print("\nInterleave two given list into another list randomly:")
+print(randomly_interleave(nums1, nums2)) 
 
 # 15. Write a Python program to split a given dictionary of lists into list of dictionaries using map function. 
- 
+def list_of_dicts(marks):
+    result = map(dict, zip(*[[(key, val) for val in value] for key, value in marks.items()]))
+    return list(result)
+marks = {'Science': [88, 89, 62, 95], 'Language': [77, 78, 84, 80]}
+print("Original dictionary of lists:")
+print(marks)
+print("\nSplit said dictionary of lists into list of dictionaries:")
+print(list_of_dicts(marks))
 
 # 16. Write a Python program to convert a given list of strings into list of lists using map function. 
-
+'''ALREADY COVERED ABOVE'''
 
 # 17. Write a Python program to convert a given list of tuples to a list of strings using map function
+def tuples_to_list_string(lst):
+    result = list(map(' '.join, lst))
+    return result   
+
+colors = [('red', 'pink'), ('white', 'black'), ('orange', 'green')]
+print("Original list of tuples:", colors)
+print("\nConvert the said list of tuples to a list of strings:")
+print(tuples_to_list_string(colors))
+
+names = [('Sheridan','Gentry'), ('Laila','Mckee'), ('Ahsan','Rivas'), ('Conna','Gonzalez')]
+print("\nOriginal list of tuples:", names)
+print("\nConvert the said list of tuples to a list of strings:")
+print(tuples_to_list_string(names))
