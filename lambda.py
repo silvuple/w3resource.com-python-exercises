@@ -526,13 +526,19 @@ def check_string(str1):
 s = input("Input the string: ")
 print(check_string(s))
 
-
 # 34. Write a Python program to filter the height and width of students, which are stored in a dictionary using lambda. 
 # Original Dictionary:
 # {'Cierra Vega': (6.2, 70), 'Alden Cantrell': (5.9, 65), 'Kierra Gentry': (6.0, 68), 'Pierre Cox': (5.8, 66)}
 # Height> 6ft and Weight> 70kg:
 # {'Cierra Vega': (6.2, 70)}
-
+def filter_data(students):
+    result = dict(filter(lambda x: (x[1][0], x[1][1]) > (6.0, 70), students.items()))
+    return result  
+students = {'Cierra Vega': (6.2, 70), 'Alden Cantrell': (5.9, 65), 'Kierra Gentry': (6.0, 68), 'Pierre Cox': (5.8, 66)}
+print("Original Dictionary:")
+print(students)
+print("\nHeight> 6ft and Weight> 70kg:")
+print(filter_data(students))
 
 # 35. Write a Python program to check whether a specified list is sorted or not using lambda. 
 # Original list:
@@ -543,7 +549,21 @@ print(check_string(s))
 # [1, 2, 4, 6, 8, 10, 12, 14, 16, 17]
 # Is the said list is sorted!
 # False
-
+def is_sort_list(nums, key=lambda x: x):
+    for i, e in enumerate(nums[1:]):
+        if key(e) < key(nums[i]): 
+            return False
+    return True
+nums1 = [1,2,4,6,8,10,12,14,16,17]
+print ("Original list:")
+print(nums1)
+print("\nIs the said list is sorted!")
+print(is_sort_list(nums1)) 
+nums2 = [2,3,8,4,7,9,8,2,6,5,1,6,1,2,3,4,6,9,1,2]
+print ("\nOriginal list:")
+print(nums1)
+print("\nIs the said list is sorted!")
+print(is_sort_list(nums2))
 
 # 36. Write a Python program to extract the nth element from a given list of tuples using lambda. 
 # Original list:
@@ -552,7 +572,18 @@ print(check_string(s))
 # ['Greyson Fulton', 'Brady Kent', 'Wyatt Knott', 'Beau Turnbull']
 # Extract nth element ( n = 2 ) from the said list of tuples:
 # [99, 96, 94, 98]
-
+def extract_nth_element(test_list, n):
+    result = list(map (lambda x:(x[n]), test_list))
+    return result
+students = [('Greyson Fulton', 98, 99), ('Brady Kent', 97, 96), ('Wyatt Knott', 91, 94), ('Beau Turnbull', 94, 98)] 
+print ("Original list:")
+print(students)
+n = 0
+print("\nExtract nth element ( n =",n,") from the said list of tuples:")
+print(extract_nth_element(students, n))
+n = 2
+print("\nExtract nth element ( n =",n,") from the said list of tuples:")
+print(extract_nth_element(students, n))
 
 # 37. Write a Python program to sort a list of lists by a given index of the inner list using lambda. 
 # Original list:
@@ -561,7 +592,18 @@ print(check_string(s))
 # [('Beau Turnbull', 94, 98), ('Brady Kent', 97, 96), ('Greyson Fulton', 98, 99), ('Wyatt Knott', 91, 94)]
 # Sort the said list of lists by a given index ( Index = 2 ) of the inner list
 # [('Wyatt Knott', 91, 94), ('Brady Kent', 97, 96), ('Beau Turnbull', 94, 98), ('Greyson Fulton', 98, 99)]
-
+def index_on_inner_list(list_data, index_no):
+    result = sorted(list_data, key=lambda x: x[index_no])
+    return result
+students = [('Greyson Fulton', 98, 99), ('Brady Kent', 97, 96), ('Wyatt Knott', 91, 94), ('Beau Turnbull', 94, 98)] 
+print ("Original list:")
+print(students)
+index_no = 0
+print("\nSort the said list of lists by a given index","( Index = ",index_no,") of the inner list")
+print(index_on_inner_list(students, index_no))
+index_no = 2
+print("\nSort the said list of lists by a given index","( Index = ",index_no,") of the inner list")
+print(index_on_inner_list(students, index_no))
 
 # 38. Write a Python program to remove all elements from a given list present in another list using lambda. 
 # Original lists:
@@ -569,6 +611,16 @@ print(check_string(s))
 # list2: [2, 4, 6, 8]
 # Remove all elements from 'list1' present in 'list2:
 # [1, 3, 5, 7, 9, 10]
+def index_on_inner_list(list1, list2):
+    result = list(filter(lambda x: x not in list2, list1))
+    return result
+list1 = [1,2,3,4,5,6,7,8,9,10]
+list2 = [2,4,6,8]
+print("Original lists:")
+print("list1:", list1)
+print("list2:", list2)
+print("\nRemove all elements from 'list1' present in 'list2:")
+print(index_on_inner_list(list1, list2))
 
 
 # 39. Write a Python program to find the elements of a given list of strings that contain specific substring using lambda. 
@@ -582,21 +634,54 @@ print(check_string(s))
 # abc
 # Elements of the said list that contain specific substring:
 # []
+def find_substring(str1, sub_str):
+    result = list(filter(lambda x: sub_str in x, str1))
+    return result
+colors = ["red", "black", "white", "green", "orange"]
+print("Original list:")
+print(colors)
 
+sub_str = "ack"
+print("\nSubstring to search:")
+print(sub_str)
+print("Elements of the said list that contain specific substring:")
+print(find_substring(colors, sub_str))
+sub_str = "abc"
+print("\nSubstring to search:")
+print(sub_str)
+print("Elements of the said list that contain specific substring:")
+print(find_substring(colors, sub_str))
 
 # 40. Write a Python program to find the nested lists elements, which are present in another list using lambda. 
 # Original lists: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 # [[12, 18, 23, 25, 45], [7, 11, 19, 24, 28], [1, 5, 8, 18, 15, 16]]
 # Intersection of said nested lists:
 # [[12], [7, 11], [1, 5, 8]]
-
+def intersection_nested_lists(l1, l2):
+    result = [list(filter(lambda x: x in l1, sublist)) for sublist in l2]
+    return result
+nums1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+nums2 = [[12, 18, 23, 25, 45], [7, 11, 19, 24, 28], [1, 5, 8, 18, 15, 16]]
+print("\nOriginal lists:")
+print(nums1)
+print(nums2)
+print("\nIntersection of said nested lists:")
+print(intersection_nested_lists(nums1, nums2))
 
 # 41. Write a Python program to reverse strings in a given list of string values using lambda. 
 # Original lists:
 # ['Red', 'Green', 'Blue', 'White', 'Black']
 # Reverse strings of the said given list:
 # ['deR', 'neerG', 'eulB', 'etihW', 'kcalB']
+def reverse_strings_list(string_list):
+    result = list(map(lambda x: "".join(reversed(x)), string_list))
+    return result
 
+colors_list = ["Red", "Green", "Blue", "White", "Black"]
+print("\nOriginal lists:")
+print(colors_list)
+print("\nReverse strings of the said given list:")
+print(reverse_strings_list(colors_list))
 
 # 42. Write a Python program to calculate the product of a given list of numbers using lambda. 
 # list1: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -605,15 +690,22 @@ print(check_string(s))
 # list2: [2.2, 4.12, 6.6, 8.1, 8.3]
 # Product of the said list numbers:
 # 4021.8599520000007
-
+import functools 
+#NOTE: reduce function is a part of functools modules. DO NOT FORGET TO INCLUDE!
+def remove_duplicates(nums):
+    result = functools.reduce(lambda x, y: x * y, nums, 1)
+    return result
+nums1 = [1,2,3,4,5,6,7,8,9,10]
+nums2 = [2.2,4.12,6.6,8.1,8.3]
+print("list1:", nums1)
+print("Product of the said list numbers:")
+print(remove_duplicates(nums1))
+print("\nlist2:", nums2)
+print("Product of the said list numbers:")
+print(remove_duplicates(nums2))
 
 # 43. Write a Python program to multiply all the numbers in a given list using lambda. 
-# Original list:
-# [4, 3, 2, 2, -1, 18]
-# Mmultiply all the numbers of the said list: -864
-# Original list:
-# [2, 4, 8, 8, 3, 2, 9]
-# Mmultiply all the numbers of the said list: 27648
+'''SAME AS THE PROGRAM ABOVE'''
 
 
 # 44. Write a Python program to calculate the average value of the numbers in a given tuple of tuples using lambda. 
@@ -625,14 +717,32 @@ print(check_string(s))
 # ((1, 1, -5), (30, -15, 56), (81, -60, -39), (-10, 2, 3))
 # Average value of the numbers of the said tuple of tuples:
 # (25.5, -18.0, 3.75)
+def average_tuple(nums):
+    result = tuple(map(lambda x: sum(x) / float(len(x)), zip(*nums)))
+    return result
 
+nums = ((10, 10, 10), (30, 45, 56), (81, 80, 39), (1, 2, 3))
+print ("Original Tuple: ")
+print(nums)
+print("\nAverage value of the numbers of the said tuple of tuples:\n",average_tuple(nums))
+nums = ((1, 1, -5), (30, -15, 56), (81, -60, -39), (-10, 2, 3))
+print ("\nOriginal Tuple: ")
+print(nums)
+print("\nAverage value of the numbers of the said tuple of tuples:\n",average_tuple(nums))
 
 # 45. Write a Python program to convert string element to integer inside a given tuple using lambda. 
 # Original tuple values:
 # (('233', 'ABCD', '33'), ('1416', 'EFGH', '55'), ('2345', 'WERT', '34'))
 # New tuple values:
 # ((233, 33), (1416, 55), (2345, 34))
-
+def tuple_int_str(tuple_str):
+    result = tuple(map(lambda x: (int(x[0]), int(x[2])), tuple_str))
+    return result     
+tuple_str =  (('233', 'ABCD', '33'), ('1416', 'EFGH', '55'), ('2345', 'WERT', '34'))
+print("Original tuple values:")
+print(tuple_str)
+print("\nNew tuple values:")
+print(tuple_int_str(tuple_str))
 
 # 46. Write a Python program to find index position and value of the maximum and minimum values in a given list of numbers using lambda. 
 # Original list:
@@ -641,28 +751,61 @@ print(check_string(s))
 # (5, 89)
 # Index position and value of the minimum value of the said list:
 # (3, 10.11)
+def position_max_min(nums):
+    max_result = max(enumerate(nums), key=(lambda x: x[1]))
+    min_result = min(enumerate(nums), key=(lambda x: x[1]))
+    return max_result,min_result
 
+nums = [12,33,23,10.11,67,89,45,66.7,23,12,11,10.25,54]
+print("Original list:")
+print(nums)
+result = position_max_min(nums)
+print("\nIndex position and value of the maximum value of the said list:")
+print(result[0])
+print("\nIndex position and value of the minimum value of the said list:")
+print(result[1])
 
 # 47. Write a Python program to sort a given mixed list of integers and strings using lambda. Numbers must be sorted before strings. 
 # Original list:
 # [19, 'red', 12, 'green', 'blue', 10, 'white', 'green', 1]
 # Sort the said mixed list of integers and strings:
 # [1, 10, 12, 19, 'blue', 'green', 'green', 'red', 'white']
-
+def sort_mixed_list(mixed_list):
+    mixed_list.sort(key=lambda e: (isinstance(e, str), e))
+    return mixed_list
+mixed_list = [19,'red',12,'green','blue', 10,'white','green',1]
+print("Original list:")
+print(mixed_list)
+print("\nSort the said  mixed list of integers and strings:")
+print(sort_mixed_list(mixed_list))
 
 # 48. Write a Python program to sort a given list of strings(numbers) numerically using lambda. 
 # Original list:
 # ['4', '12', '45', '7', '0', '100', '200', '-12', '-500']
 # Sort the said list of strings(numbers) numerically:
 # ['-500', '-12', '0', '4', '7', '12', '45', '100', '200']
-
+def sort_numeric_strings(nums_str):
+    result = sorted(nums_str, key=lambda el: int(el))
+    return result
+nums_str = ['4','12','45','7','0','100','200','-12','-500']
+print("Original list:")
+print(nums_str)
+print("\nSort the said list of strings(numbers) numerically:")
+print(sort_numeric_strings(nums_str))
 
 # 49. Write a Python program to count the occurrences of the items in a given list using lambda. 
 # Original list:
 # [3, 4, 5, 8, 0, 3, 8, 5, 0, 3, 1, 5, 2, 3, 4, 2]
 # Count the occurrences of the items in the said list:
 # {3: 4, 4: 2, 5: 3, 8: 2, 0: 2, 1: 1, 2: 2}
-
+def count_occurrences(nums):
+    result = dict(map(lambda el  : (el, list(nums).count(el)), nums))
+    return result
+nums = [3,4,5,8,0,3,8,5,0,3,1,5,2,3,4,2]
+print("Original list:")
+print(nums)
+print("\nCount the occurrences of the items in the said list:")
+print(count_occurrences(nums))
 
 # 50. Write a Python program to remove specific words from a given list using lambda. 
 # Original list:
@@ -671,19 +814,48 @@ print(check_string(s))
 # ['orange', 'black']
 # After removing the specified words from the said list:
 # ['red', 'green', 'blue', 'white']
-
+def remove_words(list1, remove_words):
+    result = list(filter(lambda word: word not in remove_words, list1))
+    return result
+        
+colors = ['orange', 'red', 'green', 'blue', 'white', 'black']
+remove_colors = ['orange','black']
+print("Original list:")
+print(colors)
+print("\nRemove words:")
+print(remove_colors)
+print("\nAfter removing the specified words from the said list:")
+print(remove_words(colors, remove_colors))
 
 # 51. Write a Python program to find the maximum and minimum values in a given list of tuples using lambda function. 
 # Original list with tuples:
 # [('V', 62), ('VI', 68), ('VII', 72), ('VIII', 70), ('IX', 74), ('X', 65)]
 # Maximum and minimum values of the said list of tuples:
 # (74, 62)
-
+def max_min_list_tuples(class_students):
+    return_max = max(class_students,key=lambda item:item[1])[1]
+    return_min = min(class_students,key=lambda item:item[1])[1]
+    return return_max, return_min
+    
+class_students = [('V', 62), ('VI', 68), ('VII', 72), ('VIII', 70), ('IX', 74), ('X', 65)]
+print("Original list with tuples:")
+print(class_students)
+print("\nMaximum and minimum values of the said list of tuples:")
+print(max_min_list_tuples(class_students))
 
 # 52. Write a Python program to remove None value from a given list using lambda function. 
 # Original list:
 # [12, 0, None, 23, None, -55, 234, 89, None, 0, 6, -12]
 # Remove None value from the said list:
 # [12, 0, 23, -55, 234, 89, 0, 6, -12]
+def remove_none(nums):
+    result = filter(lambda v: v is not None, nums)
+    return list(result)
+
+nums = [12, 0, None, 23, None, -55, 234, 89, None, 0, 6, -12]
+print("Original list:")
+print(nums)
+print("\nRemove None value from the said list:")
+print(remove_none(nums))
 
 
