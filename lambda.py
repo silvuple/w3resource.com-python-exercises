@@ -6,7 +6,10 @@ ALL CODE SOLUTIONS BY HIGHNESS_ATHARVA (ATHARVA SHAH)
 # Sample Output:
 # 25
 # 48
-
+r = lambda a : a + 15
+print(r(10))
+r = lambda x, y : x * y
+print(r(12, 4))
 
 # 2. Write a Python program to create a function that takes one argument, and that argument will be multiplied with an unknown given number. 
 # Sample Output:
@@ -14,21 +17,40 @@ ALL CODE SOLUTIONS BY HIGHNESS_ATHARVA (ATHARVA SHAH)
 # Triple the number of 15 = 45
 # Quadruple the number of 15 = 60
 # Quintuple the number 15 = 75
-
+def func_compute(n):
+ return lambda x : x * n
+result = func_compute(2)
+print("Double the number of 15 =", result(15))
+result = func_compute(3)
+print("Triple the number of 15 =", result(15))
+result = func_compute(4)
+print("Quadruple the number of 15 =", result(15))
+result = func_compute(5)
+print("Quintuple the number 15 =", result(15))
 
 # 3. Write a Python program to sort a list of tuples using Lambda.
 # Original list of tuples:
 # [('English', 88), ('Science', 90), ('Maths', 97), ('Social sciences', 82)]
 # Sorting the List of Tuples:
 # [('Social sciences', 82), ('English', 88), ('Science', 90), ('Maths', 97)]
-
+subject_marks = [('English', 88), ('Science', 90), ('Maths', 97), ('Social sciences', 82)]
+print("Original list of tuples:")
+print(subject_marks)
+subject_marks.sort(key = lambda x: x[1])
+print("\nSorting the List of Tuples:")
+print(subject_marks)
 
 # 4. Write a Python program to sort a list of dictionaries using Lambda. 
 # Original list of dictionaries :
 # [{'make': 'Nokia', 'model': 216, 'color': 'Black'}, {'make': 'Mi Max', 'model': '2', 'color': 'Gold'}, {'make': 'Samsung', 'model': 7, 'color': 'Blue'}]
 # Sorting the List of dictionaries :
 # [{'make': 'Nokia', 'model': 216, 'color': 'Black'}, {'make': 'Samsung', 'model': 7, 'color': 'Blue'}, {'make': 'Mi Max', 'model': '2', 'color': 'Gold'}]
-
+models = [{'make':'Nokia', 'model':216, 'color':'Black'}, {'make':'Mi Max', 'model':'2', 'color':'Gold'}, {'make':'Samsung', 'model': 7, 'color':'Blue'}]
+print("Original list of dictionaries :")
+print(models)
+sorted_models = sorted(models, key = lambda x: x['color'])
+print("\nSorting the List of dictionaries :")
+print(sorted_models)
 
 # 5. Write a Python program to filter a list of integers using Lambda. 
 # Original list of integers:
@@ -37,7 +59,15 @@ ALL CODE SOLUTIONS BY HIGHNESS_ATHARVA (ATHARVA SHAH)
 # [2, 4, 6, 8, 10]
 # Odd numbers from the said list:
 # [1, 3, 5, 7, 9]
+nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+print("Original list of integers: ", nums)
 
+print("\nEven numbers from the said list:")
+even_nums = list(filter(lambda x: x%2 == 0, nums))
+print(even_nums)
+print("\nOdd numbers from the said list:")
+odd_nums = list(filter(lambda x: x%2 != 0, nums))
+print(odd_nums)
 
 # 6. Write a Python program to square and cube every number in a given list of integers using Lambda. 
 # Original list of integers:
@@ -46,13 +76,24 @@ ALL CODE SOLUTIONS BY HIGHNESS_ATHARVA (ATHARVA SHAH)
 # [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
 # Cube every number of the said list:
 # [1, 8, 27, 64, 125, 216, 343, 512, 729, 1000]
-
+nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+print("Original list of integers:")
+print(nums)
+print("\nSquare every number of the said list:")
+square_nums = list(map(lambda x: x ** 2, nums))
+print(square_nums)
+print("\nCube every number of the said list:")
+cube_nums = list(map(lambda x: x ** 3, nums))
+print(cube_nums)
 
 # 7. Write a Python program to find if a given string starts with a given character using Lambda. 
 # Sample Output:
 # True
 # False
-
+starts_with = lambda x: True if x.startswith('P') else False
+print(starts_with('Python'))
+starts_with = lambda x: True if x.startswith('P') else False
+print(starts_with('Java'))
 
 # 8. Write a Python program to extract year, month, date and time using Lambda. 
 # Sample Output:
@@ -61,20 +102,28 @@ ALL CODE SOLUTIONS BY HIGHNESS_ATHARVA (ATHARVA SHAH)
 # 1
 # 15
 # 09:03:32.744178
-
+import datetime
+now = datetime.datetime.now()
+print(now)
+year, month, day, t = lambda x: x.year, lambda x: x.month, lambda x: x.day, lambda x: x.time() 
+print(year(now))
+print(month(now))
+print(day(now))
+print(t(now))
 
 # 9. Write a Python program to check whether a given string is number or not using Lambda. 
-# Sample Output:
-# True
-# True
-# False
-# True
-# False
-# True
-# Print checking numbers:
-# True
-# True
-
+is_num = lambda q: q.replace('.','',1).isdigit()
+#Here, we are eliminating . with  '' since it is True in isdigit() checking
+print(is_num('26587'))
+print(is_num('4.2365'))
+print(is_num('-12547'))
+print(is_num('00'))
+print(is_num('A001'))
+print(is_num('001'))
+print("\nPrint checking numbers:")
+is_num1 = lambda r: is_num(r[1:]) if r[0]=='-' else is_num(r)
+print(is_num1('-16.4'))
+print(is_num1('-24587.11'))
 
 # 10. Write a Python program to create Fibonacci series upto n using Lambda. 
 # Fibonacci series upto 2:
@@ -85,35 +134,66 @@ ALL CODE SOLUTIONS BY HIGHNESS_ATHARVA (ATHARVA SHAH)
 # [0, 1, 1, 2, 3, 5]
 # Fibonacci series upto 9:
 # [0, 1, 1, 2, 3, 5, 8, 13, 21]
-
+from functools import reduce
+#A bit complex workaround
+fib_series = lambda n: reduce(lambda x, _: x+[x[-1]+x[-2]], range(n-2), [0, 1])
+ 
+print("Fibonacci series upto 2:")
+print(fib_series(2))
+print("\nFibonacci series upto 5:")
+print(fib_series(5))
+print("\nFibonacci series upto 6:")
+print(fib_series(6))
+print("\nFibonacci series upto 9:")
+print(fib_series(9))
 
 # 11. Write a Python program to find intersection of two given arrays using Lambda. 
 # Original arrays:
 # [1, 2, 3, 5, 7, 8, 9, 10]
 # [1, 2, 4, 8, 9]
 # Intersection of the said arrays: [1, 2, 8, 9]
-
+array_nums1 = [1, 2, 3, 5, 7, 8, 9, 10]
+array_nums2 = [1, 2, 4, 8, 9]
+print("Original arrays:")
+print(array_nums1)
+print(array_nums2)
+result = list(filter(lambda x: x in array_nums1, array_nums2)) 
+print ("\nIntersection of the said arrays: ",result)
 
 # 12. Write a Python program to rearrange positive and negative numbers in a given array using Lambda. 
 # Original arrays:
 # [-1, 2, -3, 5, 7, 8, 9, -10]
 # Rearrange positive and negative numbers of the said array:
 # [2, 5, 7, 8, 9, -10, -3, -1]
-
+array_nums = [-1, 2, -3, 5, 7, 8, 9, -10]
+print("Original arrays:")
+print(array_nums)
+result = sorted(array_nums, key = lambda i: 0 if i == 0 else -1 / i)
+print("\nRearrange positive and negative numbers of the said array:")
+print(result)
 
 # 13. Write a Python program to count the even, odd numbers in a given array of integers using Lambda. 
 # Original arrays:
 # [1, 2, 3, 5, 7, 8, 9, 10]
 # Number of even numbers in the above array: 3
 # Number of odd numbers in the above array: 5
-
+array_nums = [1, 2, 3, 5, 7, 8, 9, 10]
+print("Original arrays:")
+print(array_nums)
+odd_ctr = len(list(filter(lambda x: (x%2 != 0) , array_nums)))
+even_ctr = len(list(filter(lambda x: (x%2 == 0) , array_nums)))
+print("\nNumber of even numbers in the above array: ", even_ctr)
+print("\nNumber of odd numbers in the above array: ", odd_ctr)
 
 # 14. Write a Python program to find the values of length six in a given list using Lambda. 
 # Sample Output:
 # Monday
 # Friday
 # Sunday
-
+weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+days = filter(lambda day: day if len(day)==6 else '', weekdays)
+for d in days:
+  print(d)
 
 # 15. Write a Python program to add two given lists using map and lambda. 
 # Original list:
@@ -121,7 +201,14 @@ ALL CODE SOLUTIONS BY HIGHNESS_ATHARVA (ATHARVA SHAH)
 # [4, 5, 6]
 # Result: after adding two list
 # [5, 7, 9]
-
+nums1 = [1, 2, 3]
+nums2 = [4, 5, 6]
+print("Original list:")
+print(nums1)
+print(nums2)
+result = map(lambda x, y: x + y, nums1, nums2)
+print("\nResult: after adding two list")
+print(list(result))
 
 # 16. Write a Python program to find the second lowest grade of any student(s) from the given names and grades of each student using lists and lambda. Input number of students, names and grades of each student. 
 # Input number of students: 5
@@ -140,57 +227,120 @@ ALL CODE SOLUTIONS BY HIGHNESS_ATHARVA (ATHARVA SHAH)
 # Second lowest grade: 2.0
 # Names:
 # N KAR
-
+students = []
+sec_name = []
+second_low = 0
+n = int(input("Input number of students: "))
+for _ in range(n):
+   s_name = input("Name: ")
+   score = float(input("Grade: "))
+   students.append([s_name,score])
+print("\nNames and Grades of all students:")
+print(students)
+order =sorted(students, key = lambda x: int(x[1]))
+for i in range(n):
+   if order[i][1] != order[0][1]:
+       second_low = order[i][1]
+       break
+print("\nSecond lowest grade: ",second_low)
+sec_student_name = [x[0] for x in order if x[1] == second_low]
+sec_student_name.sort()
+print("\nNames:")
+for s_name in sec_student_name:
+   print(s_name)
 
 # 17. Write a Python program to find numbers divisible by nineteen or thirteen from a list of numbers using Lambda. 
 # Orginal list:
 # [19, 65, 57, 39, 152, 639, 121, 44, 90, 190]
 # Numbers of the above list divisible by nineteen or thirteen:
 # [19, 65, 57, 39, 152, 190]
-
+nums = [19, 65, 57, 39, 152, 639, 121, 44, 90, 190]
+print("Orginal list:")
+print(nums) 
+result = list(filter(lambda x: (x % 19 == 0 or x % 13 == 0), nums)) 
+print("\nNumbers of the above list divisible by nineteen or thirteen:")
+print(result)
 
 # 18. Write a Python program to find palindromes in a given list of strings using Lambda. 
 # Orginal list of strings:
 # ['php', 'w3r', 'Python', 'abcd', 'Java', 'aaa']
 # List of palindromes:
 # ['php', 'aaa']
-
+texts = ["php", "w3r", "Python", "abcd", "Java", "aaa"]
+print("Orginal list of strings:")
+print(texts) 
+result = list(filter(lambda x: (x == "".join(reversed(x))), texts)) 
+print("\nList of palindromes:")
+print(result) 
 
 # 19. Write a Python program to find all anagrams of a string in a given list of strings using lambda. 
 # Orginal list of strings:
 # ['bcda', 'abce', 'cbda', 'cbea', 'adcb']
 # Anagrams of 'abcd' in the above string:
 # ['bcda', 'cbda', 'adcb']
-
+from collections import Counter  
+texts = ["bcda", "abce", "cbda", "cbea", "adcb"]
+str = "abcd"
+print("Orginal list of strings:")
+print(texts) 
+result = list(filter(lambda x: (Counter(str) == Counter(x)), texts)) 
+print("\nAnagrams of 'abcd' in the above string: ")
+print(result)
 
 # 20. Write a Python program to find the numbers of a given string and store them in a list, display the numbers which are bigger than the length of the list in sorted form. Use lambda function to solve the problem. 
 # Original string: sdf 23 safs8 5 sdfsd8 sdfs 56 21sfs 20 5
 # Numbers in sorted form:
 # 20 23 56
-
+str1 = "sdf 23 safs8 5 sdfsd8 sdfs 56 21sfs 20 5"
+print("Original string: ",str1)
+str_num=[i for i in str1.split(' ')]
+lenght=len(str_num)
+numbers=sorted([int(x) for x in str_num if x.isdigit()])
+print('Numbers in sorted form:')
+for i in ((filter(lambda x:x>lenght,numbers))):
+    print(i,end=' ')
 
 # 21. Write a Python program that multiply each number of given list with a given number using lambda function. Print the result. 
 # Original list: [2, 4, 6, 9, 11]
 # Given number: 2
 # Result:
 # 4 8 12 18 22
-
+nums = [2, 4, 6, 9 , 11]
+n = 2
+print("Original list: ", nums)
+print("Given number: ", n)
+filtered_numbers=list(map(lambda number:number*n,nums))
+print("Result:")
+print(' '.join(map(str,filtered_numbers)))
 
 # 22. Write a Python program that sum the length of the names of a given list of names after removing the names that starts with an lowercase letter. Use lambda function. 
 # Result:
 # 16
-
+sample_names = ['sally', 'Dylan', 'rebecca', 'Diana', 'Joanne', 'keith']
+sample_names=list(filter(lambda el:el[0].isupper() and el[1:].islower(),sample_names))
+print("Result:")
+print(len(''.join(sample_names)))
 
 # 23. Write a Python program to calculate the sum of the positive and negative numbers of a given list of numbers using lambda function. 
 # Original list: [2, 4, -6, -9, 11, -12, 14, -5, 17]
 # Sum of the positive numbers: -32
 # Sum of the negative numbers: 48
+nums = [2, 4, -6, -9, 11, -12, 14, -5, 17]
+print("Original list:",nums)
 
+total_negative_nums = list(filter(lambda nums:nums<0,nums))
+total_positive_nums = list(filter(lambda nums:nums>0,nums))
+
+print("Sum of the positive numbers: ",sum(total_negative_nums))
+print("Sum of the negative numbers: ",sum(total_positive_nums))
 
 # 24. Write a Python program to find numbers within a given range where every number is divisible by every digit it contains. 
 # Sample Output:
 # [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22]
-
+def divisible_by_digits(start_num, end_num):
+    return [n for n in range(start_num, end_num+1) \
+                if not any(map(lambda x: int(x) == 0 or n%int(x) != 0, str(n)))]
+print(divisible_by_digits(1,22))
 
 # 25. Write a Python program to create the next bigger number by rearranging the digits of a given number. 
 # Original number: 12
@@ -203,7 +353,33 @@ ALL CODE SOLUTIONS BY HIGHNESS_ATHARVA (ATHARVA SHAH)
 # Next bigger number: 120
 # Original number: 445
 # Next bigger number: 454
-
+def rearrange_bigger(n):
+    #Break the number into digits and store in a list
+    nums = list(str(n))
+    for i in range(len(nums)-2,-1,-1):
+        if nums[i] < nums[i+1]:
+            z = nums[i:]
+            y = min(filter(lambda x: x > z[0], z))
+            z.remove(y)
+            z.sort()
+            nums[i:] = [y] + z
+            return int("".join(nums))
+    return False
+n = 12
+print("Original number:",n)
+print("Next bigger number:",rearrange_bigger(n))
+n = 10
+print("\nOriginal number:",n)
+print("Next bigger number:",rearrange_bigger(n))
+n = 201
+print("\nOriginal number:",n)
+print("Next bigger number:",rearrange_bigger(n))
+n = 102
+print("\nOriginal number:",n)
+print("Next bigger number:",rearrange_bigger(n))
+n = 445
+print("\nOriginal number:",n)
+print("Next bigger number:",rearrange_bigger(n))
 
 # 26. Write a Python program to find the list with maximum and minimum length using lambda. 
 # Original list:
@@ -212,28 +388,66 @@ ALL CODE SOLUTIONS BY HIGHNESS_ATHARVA (ATHARVA SHAH)
 # (3, [13, 15, 17])
 # List with minimum length of lists:
 # (1, [0])
-
+def max_length_list(input_list):
+    max_length = max(len(x) for x in input_list )   
+    max_list = max(input_list, key = lambda i: len(i))    
+    return(max_length, max_list)
+    
+def min_length_list(input_list):
+    min_length = min(len(x) for x in input_list )  
+    min_list = min(input_list, key = lambda i: len(i))
+    return(min_length, min_list)
+      
+list1 = [[0], [1, 3], [5, 7], [9, 11], [13, 15, 17]]
+print("Original list:")
+print(list1)
+print("\nList with maximum length of lists:")
+print(max_length_list(list1))
+print("\nList with minimum length of lists:")
+print(min_length_list(list1))
 
 # 27. Write a Python program to sort each sublist of strings in a given list of lists using lambda. 
 # Original list:
 # [['green', 'orange'], ['black', 'white'], ['white', 'black', 'orange']]
 # After sorting each sublist of the said list of lists:
 # [['green', 'orange'], ['black', 'white'], ['black', 'orange', 'white']]
-
+def sort_sublists(input_list):
+    result = [sorted(x, key = lambda x:x[0]) for x in input_list] 
+    return result
+color1 = [["green", "orange"], ["black", "white"], ["white", "black", "orange"]]
+print("\nOriginal list:")
+print(color1)  
+print("\nAfter sorting each sublist of the said list of lists:")
+print(sort_sublists(color1))
 
 # 28. Write a Python program to sort a given list of lists by length and value using lambda. 
 # Original list:
 # [[2], [0], [1, 3], [0, 7], [9, 11], [13, 15, 17]]
 # Sort the list of lists by length and value:
 # [[0], [2], [0, 7], [1, 3], [9, 11], [13, 15, 17]]
-
+def sort_sublists(input_list):
+    result = sorted(input_list, key=lambda l: (len(l), l))
+    return result
+list1 = [[2], [0], [1, 3], [0, 7], [9, 11], [13, 15, 17]]
+print("Original list:")
+print(list1)
+print("\nSort the list of lists by length and value:")
+print(sort_sublists(list1))
 
 # 29. Write a Python program to find the maximum value in a given heterogeneous list using lambda. 
 # Original list:
 # ['Python', 3, 2, 4, 5, 'version']
 # Maximum values in the said list using lambda:
 # 5
+def max_val(list_val):
+     max_val = max(list_val, key = lambda i: (isinstance(i, int), i))  
+     return(max_val)
 
+list_val = ['Python', 3, 2, 4, 5, 'version'] 
+print("Original list:")
+print(list_val)
+print("\nMaximum values in the said list using lambda:")
+print(max_val(list_val))
 
 # 30. Write a Python program to sort a given matrix in ascending order according to the sum of its rows using lambda. 
 # Original Matrix:
@@ -244,6 +458,21 @@ ALL CODE SOLUTIONS BY HIGHNESS_ATHARVA (ATHARVA SHAH)
 # [[1, 2, 3], [-2, 4, -5], [1, -1, 1]]
 # Sort the said matrix in ascending order according to the sum of its rows
 # [[-2, 4, -5], [1, -1, 1], [1, 2, 3]]
+def sort_matrix(M):
+    result = sorted(M, key=lambda matrix_row: sum(matrix_row)) 
+    return result
+
+matrix1 = [[1, 2, 3], [2, 4, 5], [1, 1, 1]]
+matrix2 = [[1, 2, 3], [-2, 4, -5], [1, -1, 1]]
+
+print("Original Matrix:")
+print(matrix1)
+print("\nSort the said matrix in ascending order according to the sum of its rows") 
+print(sort_matrix(matrix1))
+print("\nOriginal Matrix:")
+print(matrix2) 
+print("\nSort the said matrix in ascending order according to the sum of its rows") 
+print(sort_matrix(matrix2))
 
 
 # 31. Write a Python program to extract specified size of strings from a give list of string values using lambda. 
@@ -253,18 +482,49 @@ ALL CODE SOLUTIONS BY HIGHNESS_ATHARVA (ATHARVA SHAH)
 # 8
 # After extracting strings of specified length from the said list:
 # ['practice', 'solution']
+def extract_string(str_list1, l):
+    result = list(filter(lambda e: len(e) == l, str_list1))
+    return result
 
+str_list1 = ['Python', 'list', 'exercises', 'practice', 'solution'] 
+print("Original list:")
+print(str_list1)
+l = 8
+print("\nlength of the string to extract:")
+print(l)
+print("\nAfter extracting strings of specified length from the said list:")
+print(extract_string(str_list1 , l))
 
 # 32. Write a Python program to count float number in a given mixed list using lambda. 
 # Original list:
 # [1, 'abcd', 3.12, 1.2, 4, 'xyz', 5, 'pqr', 7, -5, -12.22]
 # Number of floats in the said mixed list:
 # 3
-
+def count_integer(list1):
+    ert = list(map(lambda i: isinstance(i, float), list1)) 
+    result = len([e for e in ert if e])         
+    return result
+list1 = [1, 'abcd', 3.12, 1.2, 4, 'xyz', 5, 'pqr', 7, -5, -12.22]
+print("Original list:")
+print(list1)
+print("\nNumber of floats in the said mixed list:")
+print(count_integer(list1))
 
 # 33. Write a Python program to check whether a given string contains a capital letter, a lower case letter, a number and a minimum length using lambda. 
 # Input the string: W3resource
 # ['Valid string.']
+def check_string(str1):
+    messg = [
+    lambda str1: any(x.isupper() for x in str1) or 'String must have 1 upper case character.',
+    lambda str1: any(x.islower() for x in str1) or 'String must have 1 lower case character.',
+    lambda str1: any(x.isdigit() for x in str1) or 'String must have 1 number.',
+    lambda str1: len(str1) >= 7                 or 'String length should be atleast 8.',]
+    result = [x for x in [i(str1) for i in messg] if x != True]
+    if not result:
+        result.append('Valid string.')
+    return result    
+s = input("Input the string: ")
+print(check_string(s))
 
 
 # 34. Write a Python program to filter the height and width of students, which are stored in a dictionary using lambda. 
