@@ -250,3 +250,37 @@ with open('fruits.txt') as f:
 
     f.seek(0)
     print(f.read())
+
+# 18. Write a Python program that takes a text file as input and returns the number of words of a given text file. Go to the editor
+def count_words(filepath):
+   with open(filepath) as f:
+       data = f.read()
+       data.replace(",", " ")
+       return len(data.split(" "))
+print(count_words("words.txt"))
+
+# 19. Write a Python program to extract characters from various text files and puts them into a list. 
+import glob
+char_list = []
+files_list = glob.glob("*.txt")
+for file_elem in files_list:
+   with open(file_elem, "r") as f:
+       char_list.append(f.read())
+print(char_list)
+
+# 20. Write a Python program to generate 26 text files named A.txt, B.txt, and so on up to Z.txt. 
+import string, os
+if not os.path.exists("letters"):
+   os.makedirs("letters")
+for letter in string.ascii_uppercase:
+   with open(letter + ".txt", "w") as f:
+       f.writelines(letter)
+
+# 21. Write a Python program to create a file where all letters of English alphabet are listed by specified number of letters on each line. 
+import string
+def letters_file_line(n):
+   with open("words1.txt", "w") as f:
+       alphabet = string.ascii_uppercase
+       letters = [alphabet[i:i + n] + "\n" for i in range(0, len(alphabet), n)]
+       f.writelines(letters)
+letters_file_line(3)
