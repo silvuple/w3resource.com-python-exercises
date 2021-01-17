@@ -3,7 +3,7 @@ PYTHON BASIC EXCERCISES PART II SOLUTIONS (VIA W3RESOURCE PYTHON)
 AUTHORED BY: ATHARVA "HIGHNESS_ATHARVA" SHAH
 '''
 # 1. function that takes a sequence of numbers and determines whether all the numbers are different from each other
-def test_distinct(data):
+```def test_distinct(data):
   if len(data) == len(set(data)):
     return True
   else:
@@ -17,7 +17,7 @@ import random
 char_list = ['a','e','i','o','u']
 random.shuffle(char_list)
 print(''.join(char_list))
-
+```
 # 3. remove and print every third number from a list of numbers until the list becomes empty.
 def remove_nums(int_list):
   #list starts with 0 index
