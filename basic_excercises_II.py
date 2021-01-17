@@ -2,7 +2,6 @@
 PYTHON BASIC EXCERCISES PART II SOLUTIONS (VIA W3RESOURCE PYTHON)
 AUTHORED BY: ATHARVA "HIGHNESS_ATHARVA" SHAH
 '''
-# 1. function that takes a sequence of numbers and determines whether all the numbers are different from each other
 import os
 from multiprocessing import Process
 import requests
@@ -25,11 +24,17 @@ import bs4
 import pprint
 import collections
 import random
-```def test_distinct(data):
+
+# 1. function that takes a sequence of numbers and determines whether all the numbers are different from each other
+```
+
+
+def test_distinct(data):
     if len(data) == len(set(data)):
         return True
     else:
         return False
+
 
 print(test_distinct([1, 5, 7, 9]))
 print(test_distinct([2, 4, 5, 5, 7, 9]))
