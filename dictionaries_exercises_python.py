@@ -500,12 +500,11 @@ print(my_new_dict)
 Sample dictionary: {'key1': 1, 'key2': 3, 'key3': 2}, {'key1': 1, 'key2': 2}
 Expected output: key1: 1 is present in both x and y
 """
-
 dict_one = {'key1': 1, 'key2': 3, 'key3': 2}
 dict_two = {'key1': 1, 'key2': 2}
-
-for key in (dict_one.keys() & dict_two.keys()):
-    print(key, 'key is present in both lists')
-
-for (key, value) in (dict_one.items() & dict_two.items()):
-    print('{:s}:'.format(key), value, 'is present in both lists')
+l1=sorted(list(dict_one))
+l2=sorted(list(dict_two))
+l_intersection=l1 and l2
+for key in l_intersection:
+    print("Key is present in both", l_intersection)
+    break

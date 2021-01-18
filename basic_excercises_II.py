@@ -40,11 +40,14 @@ print(test_distinct([1, 5, 7, 9]))
 print(test_distinct([2, 4, 5, 5, 7, 9]))
 ```
 # 2. create all possible strings by using 'a', 'e', 'i', 'o', 'u'. Use the characters exactly once
+```
 char_list = ['a', 'e', 'i', 'o', 'u']
 random.shuffle(char_list)
 print(''.join(char_list))
 ```
 # 3. remove and print every third number from a list of numbers until the list becomes empty.
+
+```
 
 
 def remove_nums(int_list):
@@ -60,8 +63,10 @@ def remove_nums(int_list):
 
 nums = [10, 20, 30, 40, 50, 60, 70, 80, 90]
 remove_nums(nums)
-
+```
 # 4. (THREE SUM)find unique triplets whose three elements gives the sum of zero from an array of n integers.
+
+```
 
 
 def three_sum(nums):
@@ -92,15 +97,19 @@ def three_sum(nums):
 
 x = [1, -6, 4, 2, -1, 2, 0, -2, 0]
 print(three_sum(x))
+```
 
 # 5. create the combinations of 3 digit combo.
+```
 numbers = []
 for num in range(1000):
     num = str(num).zfill(3)
 print(num)
 numbers.append(num)
+```
 
 # 6. print a long text, convert the string to a list and print all the words and their frequencies
+```
 string_words = '''United States Declaration of Independence
 From Wikipedia, the free encyclopedia
 The United States Declaration of Independence is the statement
@@ -120,16 +129,18 @@ print("String:\n {} \n".format(string_words))
 print("List:\n {} \n".format(str(word_list)))
 print("Pairs (Words and Frequencies:\n {}".format(
     str(list(zip(word_list, word_freq)))))
-
+```
 # 7. count the number of each character of a given text of a text file
+```
 file_input = input('File Name: ')
 with open(file_input, 'r') as info:
     count = collections.Counter(info.read().upper())
     value = pprint.pformat(count)
 print(value)
+```
 
 # 8. get the top stories from Google news.
-
+```
 news_url = "https://news.google.com/news/rss"
 Client = urlopen(news_url)
 xml_page = Client.read()
@@ -143,16 +154,19 @@ for news in news_list:
     print(news.link.text)
     print(news.pubDate.text)
     print("-"*60)
+```
 
 # 9. get a list of locally installed Python modules.
+```
 installed_packages = pkg_resources.working_set
 installed_packages_list = sorted(["%s==%s" % (i.key, i.version)
                                   for i in installed_packages])
 for m in installed_packages_list:
     print(m)
+```
 
 # 10. display some information about the OS where the script is running
-
+```
 os_profile = [
     'architecture',
     'linux_distribution',
@@ -172,14 +186,15 @@ os_profile = [
 for key in os_profile:
     if hasattr(pl, key):
         print(key + ": " + str(getattr(pl, key)()))
-
+```
 # 11. check the sum of three elements (each from an array) from three arrays is equal to a target value. Print all those three-element combinations.
+```
 X = [10, 20, 20, 20]
 Y = [10, 20, 30, 40]
 Z = [10, 30, 40, 20]
 T = 70
-
-
+   
+   
 def check_sum_array(N, *nums):
     if sum(x for x in nums) == N:
         return (True, nums)
@@ -197,8 +212,11 @@ for s in sums:
         result.add(s[1])
         print(result)
 
-
+```
 # 12. create all possible permutations from a given collection of distinct numbers
+```
+
+
 def permute(nums):
     result_perms = [[]]
     for n in nums:
@@ -213,8 +231,9 @@ def permute(nums):
 my_nums = [1, 2, 3]
 print("Original Cofllection: ", my_nums)
 print("Collection of distinct numbers:\n", permute(my_nums))
-
+```
 # 13. get all possible two digit letter combinations from a digit (1 to 9) string.
+```
 
 
 def letter_combinations(digits):
@@ -245,9 +264,10 @@ digit_string = "47"
 print(letter_combinations(digit_string))
 digit_string = "29"
 print(letter_combinations(digit_string))
-
+```
 # 14. add two positive integers without using the '+' operator. Go to the editor
 # Note: Use bit wise operations to add two numbers.
+```
 
 
 def add_without_plus_operator(a, b):
@@ -261,8 +281,9 @@ def add_without_plus_operator(a, b):
 print(add_without_plus_operator(2, 10))
 print(add_without_plus_operator(-20, 10))
 print(add_without_plus_operator(-10, -20))
-
+```
 # 15. check the priority of the four operators (+, -, *, /).
+```
 __operators__ = "+-/*"
 __parenthesis__ = "()"
 __priority__ = {
@@ -282,8 +303,9 @@ print(test_higher_priority('+', '-'))
 print(test_higher_priority('+', '*'))
 print(test_higher_priority('+', '/'))
 print(test_higher_priority('*', '/'))
-
+```
 # 16. get the third side of right angled triangle from two given sides.
+```
 
 
 def pythagoras(opposite_side, adjacent_side, hypotenuse):
@@ -301,12 +323,13 @@ print(pythagoras(3, 4, 'x'))
 print(pythagoras(3, 'x', 5))
 print(pythagoras('x', 4, 5))
 print(pythagoras(3, 4, 5))
-
+```
 # 17. get all strobogrammatic numbers that are of length n. Go to the editor
 # A strobogrammatic number is a number whose numeral is rotationally symmetric, so that it appears the same when rotated 180 degrees. In other words, the numeral looks the same right-side up and upside down (e.g., 69, 96, 1001).
 # For example,
 # Given n = 2, return ["11", "69", "88", "96"].
 # Given n = 3, return ['818', '111', '916', '619', '808', '101', '906', '609', '888', '181', '986', '689']
+```
 
 
 def gen_strobogrammatic(n):
@@ -338,8 +361,9 @@ def helper(n, length):
 print("n = 2: \n", gen_strobogrammatic(2))
 print("n = 3: \n", gen_strobogrammatic(3))
 print("n = 4: \n", gen_strobogrammatic(4))
-
+```
 # 18. Find the mean, median, mode of N Numbers without using Stats module
+```
 '''
 MEAN
 '''
@@ -380,8 +404,10 @@ if n % 2 == 0:
 else:
     median = n_num[n//2]
 print("Median is: " + str(median))
+```
 
 # 19. find the value of n where n degrees of number 2 are written sequentially in a line without spaces
+```
 
 
 def ndegrees(num):
@@ -400,6 +426,7 @@ print(ndegrees("2481632"))
 print(ndegrees("248163264"))
 
 # 20. find the number of zeros at the end of a factorial of a given positive number.
+```
 
 
 def factendzero(n):
@@ -414,8 +441,9 @@ def factendzero(n):
 print(factendzero(5))
 print(factendzero(12))
 print(factendzero(100))
-
+```
 # 21. find the number of notes (Sample of notes: 10, 20, 50, 100, 200 and 500 ) against a given amount
+```
 
 
 def no_notes(a):
@@ -432,7 +460,7 @@ def no_notes(a):
 
 print(no_notes(880))
 print(no_notes(1000))
-
+```
 # 22. create a sequence where the first four members of the sequence are equal to one, and each successive term of the sequence is equal to the sum of the four previous ones. Find the Nth member of the sequence
 
 
