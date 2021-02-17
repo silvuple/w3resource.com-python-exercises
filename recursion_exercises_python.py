@@ -46,8 +46,8 @@ print(factorial(2))
 5. Write a Python program to solve the Fibonacci sequence using recursion.
 """
 
- solution 1: bad function that will work for a low n but will slow the
- computation drastically as the n increases
+#  solution 1: bad function that will work for a low n but will slow the
+#  computation drastically as the n increases
 def fibonacci(n):
     if n == 1 or n == 2:
         b = 1
