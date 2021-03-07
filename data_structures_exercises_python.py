@@ -226,9 +226,7 @@ Algeria = 213
 Andorra = 376
 Angola = 244
 """
-
 from enum import Enum, unique
-
 @unique
 class Country(Enum):
     
@@ -350,12 +348,10 @@ Expected Output:
 Array buffer start address in memory and number of elements.
 (25855056, 2)
 """
-
 import array
 
 my_arr = array.array('I', [4, 4, 4])
 print(my_arr.buffer_info())
-
 """
 15. Write a Python program to get the length of an array. 
 Expected Output:
@@ -508,9 +504,7 @@ a heap and then popping off the smallest values one at a time.
 Expected Output:
 [10, 20, 20, 40, 50, 50, 60, 70, 80, 90, 100]
 """
-
 import heapq
-
 my_unsorted_list = [20, 10, 50, 70, 30, 10, 40, 80, 20, 60]
 my_sorted_list = []
 my_heap = []
@@ -564,7 +558,6 @@ Original List:
 Sorted List: 
 [14, 25, 36, 36, 45, 47, 48, 68, 69, 78]
 """
-
 import bisect
  
 my_list = [25, 45, 36, 47, 69, 48, 68, 78, 14, 36]
@@ -572,7 +565,6 @@ my_sorted_list = []
 for i in my_list:
     bisect.insort_left(my_sorted_list, i)
 print(my_sorted_list)
-
 """
 27. Write a Python program to create a queue and display all the members and
 size of the queue. 
@@ -582,11 +574,8 @@ Members of the queue:
 Size of the queue:
 4
 """
-
 import queue
-
 q = queue.Queue()
-
 for i in range(4):
     q.put(i)
 
@@ -602,9 +591,7 @@ Expected Output:
 True 
 False
 """
-
 import queue
-
 q = queue.Queue()
 
 if q.empty():
@@ -617,9 +604,7 @@ else:
 Expected Output:
 0 1 2 3 
 """
-
 import queue
-
 q = queue.Queue()
 
 for i in range(4):

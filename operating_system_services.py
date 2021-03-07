@@ -1,10 +1,11 @@
-# 1. Write a Python program to get the name of the operating system(Platform independent), information of current operating system, current working directory, print files and directories in the current directory and raises error in the case of invalid or inaccessible file names and paths. 
 import io
 import glob
 import time
 import sys
 import os
 from os import stat_info
+
+# 1. Write a Python program to get the name of the operating system(Platform independent), information of current operating system, current working directory, print files and directories in the current directory and raises error in the case of invalid or inaccessible file names and paths. 
 print("Operating System:", os.name)
 print("\nInformation of current operating system: ", os.uname())
 print("\nCurrent Working Directory: ", os.getcwd())

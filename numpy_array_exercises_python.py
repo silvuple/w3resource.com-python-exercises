@@ -2,7 +2,6 @@
 1. Write a Python program to print the NumPy version in your system.
 """
 import numpy as np
-
 print(np.__version__)
 
 """
@@ -13,7 +12,6 @@ Original List: [12.23, 13.32, 100, 36.32]
 One-dimensional numpy array: [ 12.23 13.32 100. 36.32]
 """
 import numpy as np
-
 my_arr = np.array([12.23, 13.32, 100, 36.32])
 print(my_arr)
 
@@ -25,7 +23,6 @@ Expected Output:
 [ 8 9 10]]
 """
 import numpy as np
-
 my_arr = np.arange(2, 11).reshape(3,3)
 print(my_arr)
 
@@ -37,7 +34,6 @@ Update sixth value to 11
 [ 0. 0. 0. 0. 0. 0. 11. 0. 0. 0.]
 """
 import numpy as np
-
 my_arr = np.zeros(10)
 print(my_arr)
 my_arr[6] = 11
@@ -48,9 +44,7 @@ print(my_arr)
 Expected Output:
 [12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37]
 """
-
 import numpy as np
-
 my_arr = np.arange(12,39)
 print(my_arr)
 
@@ -75,10 +69,8 @@ Array converted to a float type:
 [ 1. 2. 3. 4.]
 """
 import numpy as np
-
 my_arr = np.array([1, 2, 3, 4], dtype=float)
 print(my_arr)
-
 my_arr = np.asfarray([1, 2, 3, 4])
 print(my_arr)
 
@@ -98,15 +90,11 @@ Original array:
 [ 1. 0. 0. 0. 1.] 
 [ 1. 1. 1. 1. 1.]]
 """
-
 import numpy as np
-
 my_arr = np.ones((5,5))
 print(my_arr)
-
 my_arr[1:4, 1:4] = 0
 print(my_arr)
-
 """
 9. Write a Python program to add a border (filled with 0's) around an existing
 array.
@@ -124,7 +112,6 @@ Original array:
 """
 import numpy as np
 my_arr = np.ones((3,3))
-
 my_arr = np.pad(my_arr, 1, 'constant', constant_values=0)
 print(my_arr)
 
@@ -156,12 +143,9 @@ Tuple to array:
 [[8 4 6] 
 [1 2 3]]
 """
-
 import numpy as np
-
 my_arr = np.array([1,2,3,4,5,6,7,8])
 print(my_arr)
-
 my_arr2 = np.array([(8,4,6),(1,2,3)])
 print(my_arr2)
 
@@ -175,7 +159,6 @@ After append values to the end of the array:
 """
 
 import numpy as np
-
 my_arr = np.array([10, 20, 30])
 new_arr = np.append(my_arr, [40, 50 , 60, 70, 80, 90])
 print(new_arr)
